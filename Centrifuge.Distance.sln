@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centrifuge.Distance", "Centrifuge.GameSupport.Distance\Centrifuge.Distance.csproj", "{C0573B40-FE3F-4E65-BB05-CC143A10A700}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Centrifuge.Distance.Shared", "Centrifuge.Distance.Shared\Centrifuge.Distance.Shared.shproj", "{E4AC586E-AD6D-43A8-A0CB-AA4D2D6FE578}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Centrifuge.Distance.Shared\Centrifuge.Distance.Shared.projitems*{e4ac586e-ad6d-43a8-a0cb-aa4d2d6fe578}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0573B40-FE3F-4E65-BB05-CC143A10A700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0573B40-FE3F-4E65-BB05-CC143A10A700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0573B40-FE3F-4E65-BB05-CC143A10A700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0573B40-FE3F-4E65-BB05-CC143A10A700}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4004B2FF-BEBA-47AB-B0A7-9A983BC2BF25}
+	EndGlobalSection
+EndGlobal
