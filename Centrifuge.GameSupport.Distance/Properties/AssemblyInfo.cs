@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("Centrifuge.Distance")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Centrifuge GameSupportLibrary for Distance")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Centrifuge.Distance")]
