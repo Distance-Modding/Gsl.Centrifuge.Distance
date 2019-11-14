@@ -65,7 +65,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\MessageResult.cs" />
+    <Compile Include="Data\MessageType.cs" />
     <Compile Include="GameAPI.cs" />
+    <Compile Include="Game\Message.cs" />
     <Compile Include="GUI\Controls\ActionButton.cs" />
     <Compile Include="GUI\Controls\CheckBox.cs" />
     <Compile Include="GUI\Controls\FloatSlider.cs" />
@@ -86,7 +89,7 @@
     <Compile Include="GUI\Mixins.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Strings.cs" />
-    <Compile Include="Systems\MenuManager.cs" />
+    <Compile Include="Game\SettingsMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="mod.json" />

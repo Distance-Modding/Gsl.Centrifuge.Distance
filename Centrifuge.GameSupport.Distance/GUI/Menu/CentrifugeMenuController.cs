@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#pragma warning disable IDE0051
+
+using UnityEngine;
 
 namespace Centrifuge.Distance.GUI.Menu
 {
