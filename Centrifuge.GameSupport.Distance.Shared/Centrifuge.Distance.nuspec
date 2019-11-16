@@ -7,7 +7,7 @@
     <authors>Ciastex</authors>
     <!--<license type="file">LICENSE.md</license>-->
     <repository type="git" url="https://github.com/Reherc/Centrifuge.Distance.git" branch="master" />
-    <projectUrl>https://github.com/Ciastex/Centrifuge.Distance</projectUrl>
+    <projectUrl>https://github.com/Reherc/Centrifuge.Distance</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>game-modding unity-engine modding-sdk modding-framework modding-toolkit sdk distance refract</tags>
     <dependencies>
