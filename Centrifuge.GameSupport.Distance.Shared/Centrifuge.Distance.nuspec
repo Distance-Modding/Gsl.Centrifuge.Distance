@@ -23,14 +23,12 @@
     <file src="./mod.template.json" target="content/mod.json" />
     <file src="./Mod.template.cs" target="content/Mod.cs" />
 
-    <file src="../LICENSE.md" target="" />
-
     <file src="../Centrifuge.GameSupport.Distance/bin/Release/Centrifuge.Distance.dll" target="lib/net35" />
 
     <file src="./Binaries/Distance/Assembly-CSharp-dev.dll" target="lib/net35" />
+    <file src="./Binaries/UnityEngine/NAudio.dll" target="lib/net35" />
     <file src="./Binaries/UnityEngine/UnityEngine.dll" target="lib/net35" />
-    <file src="./Binaries/UnityEngine/UnityEngine.CoreModule.dll" target="lib/net35" />
-    <file src="./Binaries/UnityEngine/UnityEngine.IMGUIModule.dll" target="lib/net35" />
-    <file src="./Binaries/UnityEngine/UnityEngine.TextRenderingModule.dll" target="lib/net35" />
+    <file src="./Binaries/UnityEngine/UnityEngine.UI.dll" target="lib/net35" />
+    <file src="./Binaries/UnityEngine/UnityEngine.Networking.dll" target="lib/net35" />
   </files>
 </package>
