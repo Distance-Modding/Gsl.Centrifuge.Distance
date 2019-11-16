@@ -103,7 +103,43 @@
   <ItemGroup>
     <Folder Include="Game\Vehicle\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AutoVersionUpdater.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AutoVersionUpdater.txt</LastGenOutput>
+    </Content>
+    <Content Include="Properties\AutoVersionUpdater.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutoVersionUpdater.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <!-- 15.0 is for VS2017, adjust if necessary -->
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <!-- This is what will cause the templates to be transformed when the project is built (default is false) -->
+    <TransformOnBuild>true</TransformOnBuild>
+    <!-- Set to true to force overwriting of read-only output files, e.g. if they're not checked out (default is false) -->
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <!-- Set to false to transform files even if the output appears to be up-to-date (default is true)  -->
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
+  <ItemGroup>
+    <T4ParameterValues Include="SolutionDir">
+      <Value>$(SolutionDir)</Value>
+      <Visible>False</Visible>
+    </T4ParameterValues>
+    <T4ParameterValues Include="Configuration">
+      <Value>$(Configuration)</Value>
+      <Visible>False</Visible>
+    </T4ParameterValues>
+  </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
@@ -113,10 +149,14 @@
   <PropertyGroup>
     <PostBuildEvent>SET BUILD=$(ProjectDir)$(OutDir)
 SET PACKAGES=$(SolutionDir)Build\Centrifuge.Distance\Centrifuge\GameSupport
+SET SOLUTION=$(SolutionDir)
+SET NUGET=%25SOLUTION%25nuget.exe
 
 CALL :MAKEDIR "%25PACKAGES%25"
 
 CALL :COPY "%25BUILD%25Centrifuge.Distance.dll" "%25PACKAGES%25"
+
+%25NUGET%25 pack "%25SOLUTION%25\Centrifuge.Distance.nuspec" -Version @(VersionNumber) -OutputDirectory %25SOLUTION%25
 
 EXIT 0
 
@@ -127,5 +167,19 @@ GOTO :EOF
 :COPY
 XCOPY /s /Y /v %251 %252
 GOTO :EOF</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="@(Targets->'%(Version)')" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
   </PropertyGroup>
 </Project>

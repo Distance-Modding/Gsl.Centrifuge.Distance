@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Centrifuge.GameSupport.Distance</id>
+    <version>$version$</version>
+    <description>Centrifuge Game Support Library for Distance mod development</description>
+    <authors>Reherc</authors>
+    <!--<license type="file">LICENSE.md</license>-->
+    <repository type="git" url="https://github.com/Reherc/Centrifuge.Distance.git" branch="master" />
+    <projectUrl>https://github.com/Reherc/Centrifuge.Distance</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>game-modding unity-engine modding-sdk modding-framework modding-toolkit sdk distance refract</tags>
+    <dependencies>
+      <group targetFramework="net35">
+        <dependency id="Centrifuge.Mod.SDK" version="2.0.2" />
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="./Centrifuge.GameSupport.Distance.Shared/NuGetScripts/Init.ps1" target="tools/Init.ps1" />
+
+    <file src="./Centrifuge.GameSupport.Distance.Shared/mod.template.json" target="content/mod.json" />
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Mod.template.cs" target="content/Mod.cs" />
+
+    <file src="./Centrifuge.GameSupport.Distance/bin/Release/Centrifuge.Distance.dll" target="lib/net35" />
+
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/Distance/Assembly-CSharp.dev.dll" target="lib/net35" />
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/NAudio.dll" target="lib/net35" />
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/UnityEngine.dll" target="lib/net35" />
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/UnityEngine.UI.dll" target="lib/net35" />
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/UnityEngine.Networking.dll" target="lib/net35" />
+  </files>
+</package>
