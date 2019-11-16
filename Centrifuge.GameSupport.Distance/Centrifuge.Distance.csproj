@@ -111,4 +111,22 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ModuleInit.Fody.2.1.0\build\ModuleInit.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ModuleInit.Fody.2.1.0\build\ModuleInit.Fody.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>SET BUILD=$(ProjectDir)$(OutDir)
+SET PACKAGES=$(SolutionDir)Build\Centrifuge.Distance\Centrifuge\GameSupport
+
+CALL :MAKEDIR "%25PACKAGES%25"
+
+CALL :COPY "%25BUILD%25Centrifuge.Distance.dll" "%25PACKAGES%25"
+
+EXIT 0
+
+:MAKEDIR
+IF NOT EXIST %251 MKDIR %251
+GOTO :EOF
+
+:COPY
+XCOPY /s /Y /v %251 %252
+GOTO :EOF</PostBuildEvent>
+  </PropertyGroup>
 </Project>
