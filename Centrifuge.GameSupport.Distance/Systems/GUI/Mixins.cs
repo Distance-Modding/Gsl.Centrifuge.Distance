@@ -6,14 +6,16 @@ using UnityEngine;
 
 namespace Centrifuge.Distance.GUI
 {
-    internal sealed class Mixins
+    internal class Mixins
     {
-        [HarmonyPatch(typeof(MainMenuGameModeButtons), "Init", new Type[] { typeof(IEnumerable<string>), typeof(Action<string>) })]
+        //[HarmonyPatch(typeof(MainMenuGameModeButtons), "Init", new Type[] { typeof(IEnumerable<string>), typeof(Action<string>) })]
         public class InitModeButtons
         {
             static bool Prefix(MainMenuGameModeButtons __instance, ref IEnumerable<string> modeNames, ref Action<string> onModeClick)
             {
-                if (__instance.gameObject.name != "OptionsButtonsPanel") return true;
+                GameAPI.Logger.Warning(__instance.name);
+
+                if (__instance.gameObject.name != "Options") return true;
 
                 List<MenuButtonList.ButtonInfo> buttonInfoList = new List<MenuButtonList.ButtonInfo>();
                 foreach (string modeName in modeNames)
@@ -30,7 +32,7 @@ namespace Centrifuge.Distance.GUI
                 buttonInfoList.Add(CreateEntry(Resources.Strings.Menu.RootMenuName, Resources.Strings.Menu.RootMenuFullName, () => MenuSystem.ShowRootMenu(MenuSystem.MenuTree, __instance.gameObject, 0)));
                 __instance.Init(buttonInfoList);
 
-                GameObject buttons = __instance.transform.Find("OptionsButtonsPanel").gameObject;
+                GameObject buttons = __instance.transform.Find("OptionsButtons").gameObject;
                 foreach (GameObject button in buttons.GetChildren())
                 {
                     SetMenuDescriptionOnHover menudescription = button.GetComponent<SetMenuDescriptionOnHover>();
@@ -61,11 +63,54 @@ namespace Centrifuge.Distance.GUI
             }
         }
 
+        //[HarmonyPatch(typeof(OptionsButtons), "GetButtonInfos")]
+        public class GetOptionsButtonInfos
+        {
+            static void Postfix(OptionsButtons __instance, List<MenuButtonList.ButtonInfo> __result, ref OptionsMenuLogic optionsMenu, ref bool isPauseMenu)
+            {
+                __result.Add(new MenuButtonList.ButtonInfo()
+                {
+                    name = Resources.Strings.Menu.RootMenuFullName,
+                    onClick = () =>
+                    {
+                        MenuSystem.ShowRootMenu(MenuSystem.MenuTree, __instance.gameObject, 0);
+                    }
+                });
+            }
+        }
+
+        [HarmonyPatch(typeof(OptionsMenuLogic), "GetSubmenus")]
+        public class GetOptionsSubmenus
+        {
+            static void Prefix(OptionsMenuLogic __instance, IEnumerable<OptionsSubmenu> __result, ref bool isPauseMenu)
+            {
+                foreach (var menu in __instance.subMenus_)
+                    if (menu.GetType().IsSubclassOf(typeof(SuperMenu)))
+                        MenuSystem.MenuBlueprint = ((SuperMenu)menu).menuBlueprint_;
+
+
+                var CentrifugeMenu = __instance.gameObject.AddComponent<CentrifugeMenu>();
+                CentrifugeMenu.IsRootMenu = true;
+                CentrifugeMenu.MenuTree = MenuSystem.MenuTree;
+
+                List<OptionsSubmenu> menus = new List<OptionsSubmenu>(__instance.subMenus_);
+
+                foreach (var menu in __instance.subMenus_)
+                    if (menu.Name_ == CentrifugeMenu.Name_)
+                        menus.Remove(menu);
+
+                menus.Add(CentrifugeMenu);
+
+                __instance.subMenus_ = menus.ToArray();
+            }
+        }
+
         [HarmonyPatch(typeof(ModeCompleteStatusMenuLogic), "SetValues")]
         public class ModeCompleteStatusMenuLogicSetValues
         {
             static bool Prefix(ModeCompleteStatusMenuLogic __instance, float t)
             {
+                return false;
                 GameObject container = __instance.gameObject;
                 InitModeButtons.TargetObject target = container.GetComponent<InitModeButtons.TargetObject>();
                 if (target)

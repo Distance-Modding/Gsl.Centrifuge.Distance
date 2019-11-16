@@ -1,10 +1,9 @@
-﻿using Harmony;
-using Reactor.API.Attributes;
+﻿using Reactor.API.Attributes;
 using Reactor.API.Configuration;
 using Reactor.API.Interfaces.Systems;
+using Reactor.API.Runtime.Patching;
 using Reactor.API.Logging;
 using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace Centrifuge.Distance
@@ -16,23 +15,25 @@ namespace Centrifuge.Distance
 
         internal static IManager Manager;
         internal static Settings Settings { get; set; }
-        internal static Log Log { get; set; }
-        private HarmonyInstance HarmonyInstance { get; set; }
+        internal static Log Logger { get; set; }
 
-        public void Awake()
+        public void Initialize(IManager manager)
         {
             DontDestroyOnLoad(gameObject);
-            Log = new Log("distance_gsl");
+            Logger = LogManager.GetForCurrentAssembly();
+            Logger.LogLevel = LogLevel.Everything;
+
+            Manager = manager;
 
             try
             {
-                HarmonyInstance = HarmonyInstance.Create(DistanceGameNamespace);
-                HarmonyInstance.PatchAll(Assembly.GetAssembly(typeof(GameAPI)));
+                RuntimePatcher.AutoPatch();
+                RuntimePatcher.RunTranspilers();
             }
             catch (Exception e)
             {
-                Log.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
-                Log.Exception(e, true);
+                Logger.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
+                Logger.Exception(e);
             }
         }
     }

@@ -5,13 +5,13 @@ using static ReplaySettings;
 
 namespace Centrifuge.Distance.Game
 {
-    public static class Settings
+    public static class Options
     {
         public static GameManager Game => G.Sys.GameManager_;
-        public static OptionsManager Options => G.Sys.OptionsManager_;
+        public static OptionsManager OptionsManager => G.Sys.OptionsManager_;
         public static class Audio
         {
-            public static AudioSettings Manager => Options.Audio_;
+            public static AudioSettings Manager => OptionsManager.Audio_;
             public static class Subtitles
             {
                 public static bool Enabled
@@ -117,7 +117,7 @@ namespace Centrifuge.Distance.Game
         }
         public static class General
         {
-            public static GeneralSettings Manager => Options.General_;
+            public static GeneralSettings Manager => OptionsManager.General_;
             public static float BoomBoxBloomIntensity
             {
                 get => Manager.BoomBoxIntensity_;
@@ -191,7 +191,7 @@ namespace Centrifuge.Distance.Game
         }
         public static class Graphics
         {
-            public static GraphicsSettings Manager => Options.Graphics_;
+            public static GraphicsSettings Manager => OptionsManager.Graphics_;
             public static int AnisotropicFiltering
             {
                 get => Manager.AnisotropicFiltering_;
@@ -310,7 +310,7 @@ namespace Centrifuge.Distance.Game
         }
         public static class Replay
         {
-            public static ReplaySettings Manager => Options.Replay_;
+            public static ReplaySettings Manager => OptionsManager.Replay_;
             public static float GhostsBrightness
             {
                 get => Manager.GhostBrightness_;

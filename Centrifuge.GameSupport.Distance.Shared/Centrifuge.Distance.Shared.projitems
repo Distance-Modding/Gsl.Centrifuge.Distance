@@ -14,5 +14,13 @@
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.Networking.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.UI.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Centrifuge.Distance.nuspec" />
+    <None Include="$(MSBuildThisFileDirectory)NuGetScripts\Init.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)mod.template.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)mod.template.json" />
   </ItemGroup>
 </Project>

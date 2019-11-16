@@ -10,7 +10,7 @@ namespace Centrifuge.Distance.GUI.Menu
     {
         private const int MaxEntriesPerPage = 9;
 
-        private SpectrumMenuController Controller { get; set; }
+        private CentrifugeMenuController Controller { get; set; }
         private InputManager InputManager { get; set; }
         private int PageCount { get; set; }
 
@@ -18,6 +18,7 @@ namespace Centrifuge.Distance.GUI.Menu
         public GameObject DescriptionLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Description").gameObject;
         public GameObject OptionsTable => PanelObject_.transform.Find("Options/OptionsTable").gameObject;
 
+        public bool IsRootMenu { get; internal set; }
         public MenuPanel MenuPanel { get; internal set; }
         public MenuTree MenuTree { get; internal set; } = new MenuTree("menu.centrifuge.error", "[FF0000]Error[-]");
         public string Title { get; set; }
@@ -33,7 +34,7 @@ namespace Centrifuge.Distance.GUI.Menu
             PageCount = (int)Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage);
             DisplayMenu();
 
-            Controller = PanelObject_.AddComponent<SpectrumMenuController>();
+            Controller = PanelObject_.AddComponent<CentrifugeMenuController>();
             Controller.Menu = this;
         }
 
@@ -59,6 +60,8 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public override void OnPanelPop()
         {
+            if (IsRootMenu) return;
+
             foreach (var item in OptionsTable.GetChildren().GetComponent<MenuItemInfo>())
                 item.Destroy();
 

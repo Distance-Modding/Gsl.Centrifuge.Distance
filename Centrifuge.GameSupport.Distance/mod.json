@@ -1,9 +1,0 @@
-﻿{
-  "FriendlyName": "ExampleMod",
-  "Author": "You",
-  "Contact": "0451",
-  "ModuleFileName": "ExampleMod.dll",
-  "Dependencies": [],
-  "SkipLoad": false,
-  "Priority": 10
-}
