@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Centrifuge.Distance.Data;
+using System;
 
 namespace Centrifuge.Distance.Game
 {
@@ -25,9 +26,9 @@ namespace Centrifuge.Distance.Game
             return new MessageBox(content, title);
         }
 
-        public MessageBox SetButtons(MessagePanelLogic.ButtonType buttons)
+        public MessageBox SetButtons(MessageButtons buttons)
         {
-            Buttons = buttons;
+            Buttons = (MessagePanelLogic.ButtonType)buttons;
             return this;
         }
 

@@ -68,8 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\MessageResult.cs" />
-    <Compile Include="Data\MessageType.cs" />
+    <Compile Include="Data\MessageButtons.cs" />
     <Compile Include="GameAPI.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\MessageBox.cs" />
