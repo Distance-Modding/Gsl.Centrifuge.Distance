@@ -155,7 +155,7 @@ SET SOLUTION=$(SolutionDir)
 SET NUGET=%25SOLUTION%25nuget.exe
 
 CALL :MAKEDIR "%25PACKAGES%25"
-CALL :MAKEDIR "%25PACKAGES%25\Centrifuge\GameSupport"
+CALL :MAKEDIR "%25PACKAGES%25\Centrifuge.Distance\Centrifuge\GameSupport"
 CALL :COPY "%25BUILD%25Centrifuge.Distance.dll" "%25PACKAGES%25Centrifuge.Distance\Centrifuge\GameSupport"
 
 %25NUGET%25 pack "%25SOLUTION%25\Centrifuge.Distance.nuspec" -Version @(VersionNumber) -OutputDirectory %25PACKAGES%25\nuget
