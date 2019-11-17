@@ -182,4 +182,8 @@ GOTO :EOF</PostBuildEvent>
       PostBuildMacros;
     </PostBuildEventDependsOn>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>SET PACKAGES=$(SolutionDir)Build\
+DEL %25PACKAGES%25nuget\*.nupkg</PreBuildEvent>
+  </PropertyGroup>
 </Project>
