@@ -69,10 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\MessageButtons.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="GameAPI.cs" />
+    <Compile Include="Game\Cheats.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\MessageBox.cs" />
     <Compile Include="Game\Options.cs" />
+    <Compile Include="Game\Profile.cs" />
+    <Compile Include="Game\Vehicle.cs" />
     <Compile Include="Systems\GUI\Controls\ActionButton.cs" />
     <Compile Include="Systems\GUI\Controls\CheckBox.cs" />
     <Compile Include="Systems\GUI\Controls\FloatSlider.cs" />
@@ -100,9 +104,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Vehicle\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\AutoVersionUpdater.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
