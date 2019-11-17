@@ -50,7 +50,7 @@
 		// 
 		// Set new version in target files
 		AssemblyFileData = Regex.Replace(AssemblyFileData, asmVerPattern, m => m.Groups[1].Value + newVersion + m.Groups[2].Value);
-		File.WriteAllText(AssemblyFilePath, AssemblyFileData);
+		//File.WriteAllText(AssemblyFilePath, AssemblyFileData);
 	}
 	//========================================== Assembly File ==================================================
 	//===========================================================================================================

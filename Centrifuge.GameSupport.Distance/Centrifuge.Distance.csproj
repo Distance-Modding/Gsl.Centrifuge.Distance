@@ -184,6 +184,7 @@ GOTO :EOF</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>SET PACKAGES=$(SolutionDir)Build\
-DEL %25PACKAGES%25nuget\*.nupkg</PreBuildEvent>
+DEL %25PACKAGES%25nuget\*.nupkg
+EXIT 0</PreBuildEvent>
   </PropertyGroup>
 </Project>
