@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Centrifuge.Distance</id>
+    <id>Centrifuge.GameSupport.Distance</id>
     <version>$version$</version>
     <description>Centrifuge Game Support Library for Distance mod development</description>
     <authors>Reherc</authors>
