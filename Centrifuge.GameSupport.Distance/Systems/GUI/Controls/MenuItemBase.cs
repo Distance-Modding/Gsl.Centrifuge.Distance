@@ -14,7 +14,6 @@ namespace Centrifuge.Distance.GUI.Controls
         protected MenuItemBase(MenuDisplayMode mode, string id, string name)
         {
             Mode = mode;
-
             Id = id;
             Name = name;
         }

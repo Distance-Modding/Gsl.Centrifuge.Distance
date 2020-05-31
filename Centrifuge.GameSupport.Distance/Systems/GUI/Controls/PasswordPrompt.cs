@@ -13,7 +13,7 @@ namespace Centrifuge.Distance.GUI.Controls
                 new InputPromptPanel.OnSubmit(OnSubmit),
                 new InputPromptPanel.OnPop(OnCancel),
                 Title,
-                DefaultValue
+                DefaultValue()
             );
         }
     }

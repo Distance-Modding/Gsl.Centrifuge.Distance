@@ -16,7 +16,6 @@
       </group>
     </dependencies>
   </metadata>
-
   <files>
     <file src="./Centrifuge.GameSupport.Distance.Shared/NuGetScripts/Init.ps1" target="tools/Init.ps1" />
 

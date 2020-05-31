@@ -2,9 +2,9 @@
 
 namespace Centrifuge.Distance.GUI.Menu
 {
-    public abstract class CentrifugeMenuAbstract : SuperMenu
+    public abstract class CentrifugeMenuAbstract : global::Spectrum.API.GUI.Menu.SpectrumMenuAbstract
     {
-        public IManager Manager { get; set; }
+        public new IManager Manager { get; set; }
 
         public override string MenuTitleName_ => Resources.Strings.Menu.RootMenuFullName;
         public override string Name_ => Resources.Strings.Menu.RootMenuName;

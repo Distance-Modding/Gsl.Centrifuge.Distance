@@ -10,6 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Binaries\Distance\Assembly-CSharp.dev.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Binaries\Spectrum\Spectrum.API.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Binaries\Spectrum\Spectrum.Bootstrap.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Binaries\Spectrum\Spectrum.Interop.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Binaries\Spectrum\Spectrum.Manager.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\NAudio.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.Networking.dll" />

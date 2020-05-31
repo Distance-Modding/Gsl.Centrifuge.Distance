@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Centrifuge.Distance.GUI.Controls;
-using Reactor.API.Extensions;
 
 namespace Centrifuge.Distance.GUI.Data
 {

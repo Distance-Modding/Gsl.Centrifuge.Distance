@@ -11,7 +11,9 @@ namespace Centrifuge.Distance.GUI.Menu
         void Update()
         {
             if (Menu && Menu.PanelObject_ && Menu.PanelObject_.activeInHierarchy && Menu.MenuPanel.IsTop_)
+            {
                 Menu?.UpdateVirtual();
+            }
         }
     }
 }

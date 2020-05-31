@@ -51,7 +51,9 @@ namespace Centrifuge.Distance.GUI.Menu
             for (int i = CurrentPageIndex * MaxEntriesPerPage; i < (CurrentPageIndex * MaxEntriesPerPage) + MaxEntriesPerPage; i++)
             {
                 if (i < currentTree.Count)
+                {
                     currentTree[i].Tweak(this);
+                }
                 else break;
             }
 
@@ -60,10 +62,15 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public override void OnPanelPop()
         {
-            if (IsRootMenu) return;
+            if (IsRootMenu)
+            {
+                return;
+            }
 
             foreach (var item in OptionsTable.GetChildren().GetComponent<MenuItemInfo>())
+            {
                 item.Destroy();
+            }
 
             Controller.Destroy();
             MenuPanel.Destroy();
@@ -104,13 +111,17 @@ namespace Centrifuge.Distance.GUI.Menu
             UILabel TitleLabelObject = TitleLabel.GetComponent<UILabel>();
 
             if (TitleLabelObject)
+            {
                 TitleLabelObject.text = Title;
+            }
 
             DescriptionLabel?.SetActive(true);
             UILabel DescriptionLabelObject = DescriptionLabel.GetComponent<UILabel>();
 
             if (DescriptionLabelObject)
+            {
                 DescriptionLabelObject.text = Description;
+            }
         }
     }
 }

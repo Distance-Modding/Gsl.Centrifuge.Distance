@@ -7,7 +7,7 @@ namespace Centrifuge.Distance.GUI.Controls
     public class InputPrompt : MenuItemBase
     {
         public string Title { get; set; }
-        public string DefaultValue { get; set; }
+        public Func<string> DefaultValue { get; set; }
         public Func<string, string> Validator { get; set; }
         public Action<string> SubmitAction { get; set; }
         public Action<InputPrompt> CloseAction { get; set; }
@@ -23,7 +23,13 @@ namespace Centrifuge.Distance.GUI.Controls
 
         public InputPrompt WithDefaultValue(string defaultValue)
         {
-            DefaultValue = defaultValue ?? string.Empty;
+            DefaultValue = delegate () { return defaultValue; };
+            return this;
+        }
+        
+        public InputPrompt WithDefaultValue(Func<string> defaultValue)
+        {
+            DefaultValue = defaultValue ?? delegate() { return string.Empty; };
             return this;
         }
 
@@ -68,7 +74,7 @@ namespace Centrifuge.Distance.GUI.Controls
                 new InputPromptPanel.OnSubmit(OnSubmit),
                 new InputPromptPanel.OnPop(OnCancel),
                 Title,
-                DefaultValue
+                DefaultValue()
             );
         }
 
