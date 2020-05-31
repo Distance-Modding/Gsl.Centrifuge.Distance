@@ -51,18 +51,6 @@
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Centrifuge.Mod.SDK.2.2.0\lib\net35\Reactor.API.dll</HintPath>
     </Reference>
-    <Reference Include="Spectrum.API">
-      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Spectrum\Spectrum.API.dll</HintPath>
-    </Reference>
-    <Reference Include="Spectrum.Bootstrap">
-      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Spectrum\Spectrum.Bootstrap.dll</HintPath>
-    </Reference>
-    <Reference Include="Spectrum.Interop">
-      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Spectrum\Spectrum.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="Spectrum.Manager">
-      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Spectrum\Spectrum.Manager.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
