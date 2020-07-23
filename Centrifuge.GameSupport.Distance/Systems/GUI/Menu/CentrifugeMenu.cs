@@ -1,7 +1,9 @@
 ﻿using Centrifuge.Distance.Events.GUI;
+using Centrifuge.Distance.Game;
 using Centrifuge.Distance.GUI.Data;
 using Reactor.API.Interfaces.Systems;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Centrifuge.Distance.GUI.Menu
@@ -10,32 +12,53 @@ namespace Centrifuge.Distance.GUI.Menu
     {
         private const int MaxEntriesPerPage = 9;
 
-        private CentrifugeMenuController Controller { get; set; }
         private InputManager InputManager { get; set; }
-        private int PageCount { get; set; }
+
+        private int PageCount => (int)Math.Max(Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage), 1);
+
+        public override string MenuTitle_ => MenuTree.Title;
 
         public GameObject TitleLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Title").gameObject;
+        
         public GameObject DescriptionLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Description").gameObject;
+        
         public GameObject OptionsTable => PanelObject_.transform.Find("Options/OptionsTable").gameObject;
 
         public bool IsRootMenu { get; internal set; }
+        
         public MenuPanel MenuPanel { get; internal set; }
+        
         public MenuTree MenuTree { get; internal set; } = new MenuTree("menu.centrifuge.error", "[FF0000]Error[-]");
-        public string Title { get; set; }
+
+        public string Title => MenuTree.Title;
+        
         public string Description { get; set; }
+        
         public bool SwitchPageOnClose { get; internal set; }
+        
         public int CurrentPageIndex { get; internal set; } = 0;
+        
         public string Id => MenuTree.Id;
 
         public override void InitializeVirtual()
         {
             InputManager = G.Sys.InputManager_;
 
-            PageCount = (int)Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage);
-            DisplayMenu();
+            if (!MenuTree.GetItems().Any())
+            {
+                MessageBox.Create(InternalResources.Strings.MenuSystem.UnavailableMenuError, InternalResources.Strings.MenuSystem.UnavailableMenuErrorTitle)
+                    .SetButtons(Distance.Data.MessageButtons.Ok)
+                    .OnConfirm(() =>
+                    {
+                        PanelManager.TopPanel_.onPanelPop_ += () =>
+                        {
+                            MenuPanel.Pop();
+                        };
+                    })
+                    .Show();
+            }
 
-            Controller = PanelObject_.AddComponent<CentrifugeMenuController>();
-            Controller.Menu = this;
+            DisplayMenu();
         }
 
         public CentrifugeMenu WithManager(IManager manager)
@@ -48,13 +71,17 @@ namespace Centrifuge.Distance.GUI.Menu
         {
             MenuTree currentTree = MenuTree.GetItems(MenuSystem.GetCurrentDisplayMode());
 
-            for (int i = CurrentPageIndex * MaxEntriesPerPage; i < (CurrentPageIndex * MaxEntriesPerPage) + MaxEntriesPerPage; i++)
+            if (currentTree.Any())
             {
-                if (i < currentTree.Count)
+                for (int i = CurrentPageIndex * MaxEntriesPerPage; i < (CurrentPageIndex * MaxEntriesPerPage) + MaxEntriesPerPage; i++)
                 {
-                    currentTree[i].Tweak(this);
+                    if (i < currentTree.Count)
+                    {
+                        currentTree[i].Tweak(this);
+                    }
+
+                    else break;
                 }
-                else break;
             }
 
             MenuOpenedEvent.Broadcast(this);
@@ -72,20 +99,33 @@ namespace Centrifuge.Distance.GUI.Menu
                 item.Destroy();
             }
 
-            Controller.Destroy();
             MenuPanel.Destroy();
             PanelObject_.Destroy();
 
             this.Destroy();
         }
 
-        public void UpdateVirtual()
+        public override void Update()
         {
-            G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageUp, Resources.Strings.Menu.MenuActionPrevious);
-            G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageDown, Resources.Strings.Menu.MenuActionNext);
+            bool flag = true;
+
+            flag &= PanelObject_ != null;
+            flag &= PanelObject_?.activeInHierarchy is true;
+
+            if (flag)
+            {
+                UpdateVirtual();
+            }
+        }
+
+        public override void UpdateVirtual()
+        {
             G.Sys.MenuPanelManager_.SetBottomLeftActionButtonEnabled(InputAction.MenuPageUp, MenuTree.Count > MaxEntriesPerPage);
             G.Sys.MenuPanelManager_.SetBottomLeftActionButtonEnabled(InputAction.MenuPageDown, MenuTree.Count > MaxEntriesPerPage);
 
+            G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageUp, InternalResources.Strings.MenuSystem.MenuActionPrevious);
+            G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageDown, InternalResources.Strings.MenuSystem.MenuActionNext);
+            
             if (MenuTree.Count > MaxEntriesPerPage)
             {
                 if (InputManager.GetKeyUp(InputAction.MenuPageUp))
@@ -105,7 +145,7 @@ namespace Centrifuge.Distance.GUI.Menu
                 }
             }
 
-            Description = string.Format(Resources.Strings.Menu.MenuPageDescription, CurrentPageIndex + 1, PageCount);
+            Description = string.Format(InternalResources.Strings.MenuSystem.MenuPageDescription, CurrentPageIndex + 1, PageCount);
 
             TitleLabel?.SetActive(true);
             UILabel TitleLabelObject = TitleLabel.GetComponent<UILabel>();

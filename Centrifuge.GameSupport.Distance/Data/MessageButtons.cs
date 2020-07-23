@@ -8,8 +8,5 @@ namespace Centrifuge.Distance.Data
         Ok = MessagePanelLogic.ButtonType.Ok,
         OkCancel = MessagePanelLogic.ButtonType.OkCancel,
         YesNo = MessagePanelLogic.ButtonType.YesNo
-
-
-        
     }
 }

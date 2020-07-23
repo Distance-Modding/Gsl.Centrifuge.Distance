@@ -19,6 +19,7 @@ namespace Centrifuge.Distance.Game
             get
             {
                 var gameObject = GameObject.Find("AlphaVersion");
+
                 if (gameObject == null)
                 {
                     return string.Empty;
@@ -31,20 +32,22 @@ namespace Centrifuge.Distance.Game
             set
             {
                 var gameObject = GameObject.Find("AlphaVersion");
+
                 if (gameObject == null)
                 {
-                    Console.WriteLine("API: Couldn't find AlphaVersion game object.");
+                    GameAPI.Instance.logger_.Error("API: Couldn't find AlphaVersion game object.");
                     return;
                 }
 
                 var labelComponent = gameObject.GetComponent<UILabel>();
+
                 if (labelComponent != null)
                 {
                     labelComponent.text = value;
                 }
                 else
                 {
-                    Console.WriteLine("API: AlphaVersion game object found, but no UILabel component exists.");
+                    GameAPI.Instance.logger_.Error("API: AlphaVersion game object found, but no UILabel component exists.");
                 }
             }
         }
@@ -55,7 +58,9 @@ namespace Centrifuge.Distance.Game
             {
                 var gameObject = GameObject.Find("AlphaVersion");
                 if (gameObject == null)
+                {
                     return false;
+                }
 
                 return gameObject.activeSelf;
             }

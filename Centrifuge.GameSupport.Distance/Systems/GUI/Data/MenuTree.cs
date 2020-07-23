@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Centrifuge.Distance.GUI.Controls;
+using Centrifuge.Distance.GUI.Menu;
 
 namespace Centrifuge.Distance.GUI.Data
 {
@@ -143,6 +144,11 @@ namespace Centrifuge.Distance.GUI.Data
             }));
 
             return tree;
+        }
+
+        public MenuTree GetItems()
+        {
+            return GetItems(MenuSystem.GetCurrentDisplayMode());
         }
 
         public static implicit operator SubMenu(MenuTree menu) => new SubMenu(MenuDisplayMode.Both, menu.Id, menu.Title);

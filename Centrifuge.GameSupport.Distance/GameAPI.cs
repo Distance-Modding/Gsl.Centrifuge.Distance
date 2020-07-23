@@ -1,29 +1,37 @@
 ﻿using Reactor.API.Attributes;
-using Reactor.API.Configuration;
 using Reactor.API.Interfaces.Systems;
 using Reactor.API.Runtime.Patching;
 using Reactor.API.Logging;
 using System;
 using UnityEngine;
+using Centrifuge.Distance.Systems.ExportedTypes;
+using LevelEditorTools;
+using Centrifuge.Distance.GUI.Data;
+using Centrifuge.Distance.GUI.Menu;
 
 namespace Centrifuge.Distance
 {
-    [GameSupportLibraryEntryPoint(DistanceGameNamespace)]
+    [GameSupportLibraryEntryPoint("com.github.reherc/Centrifuge.Distance")]
     internal sealed class GameAPI : MonoBehaviour
     {
-        internal const string DistanceGameNamespace = "com.github.reherc/Centrifuge.Distance";
+        internal static GameAPI Instance { get; set; }
 
-        internal static IManager Manager;
-        internal static Settings Settings { get; set; }
-        internal static Log Logger { get; set; }
+        internal IManager manager_;
+
+        internal Log logger_;
 
         public void Initialize(IManager manager)
         {
             DontDestroyOnLoad(gameObject);
-            Logger = LogManager.GetForCurrentAssembly();
-            Logger.LogLevel = LogLevel.Everything;
 
-            Manager = manager;
+            logger_ = LogManager.GetForCurrentAssembly();
+
+            Instance = this;
+
+            manager_ = manager;
+
+            RegisterExportedTypes();
+            CreateSettingsMenu();
 
             try
             {
@@ -32,9 +40,25 @@ namespace Centrifuge.Distance
             }
             catch (Exception e)
             {
-                Logger.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
-                Logger.Exception(e);
+                logger_.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
+                logger_.Exception(e);
             }
+        }
+
+        private void RegisterExportedTypes()
+        {
+            TypeExportManager.Register<ISerializable>();
+            TypeExportManager.Register<LevelEditorTool>();
+            TypeExportManager.Register<AddedComponent>();
+        }
+
+        private void CreateSettingsMenu()
+        {
+            MenuTree settingsMenu = new MenuTree("menu.gsl.distance", InternalResources.Strings.Settings.Gsl.MenuTitle);
+
+            settingsMenu.CheckBox(MenuDisplayMode.Both, "setting:show_version_info", InternalResources.Strings.Settings.Gsl.ShowVersionInfo, () => true, (_) => { }, true, InternalResources.Strings.Settings.Gsl.ShowVersionInfoDescription);
+
+            MenuSystem.MenuTree.SubmenuButton(MenuDisplayMode.Both, "navigate:menu.gsl.distance", InternalResources.Strings.Settings.Gsl.MenuTitle.ToUpper(), settingsMenu, InternalResources.Strings.Settings.Gsl.MenuDescription);
         }
     }
 }

@@ -4,10 +4,16 @@ namespace Centrifuge.Distance.GUI.Menu
 {
     public abstract class CentrifugeMenuAbstract : SuperMenu
     {
+        public MenuPanelManager PanelManager => G.Sys.MenuPanelManager_;
+
         public IManager Manager { get; set; }
 
-        public override string MenuTitleName_ => Resources.Strings.Menu.RootMenuFullName;
-        public override string Name_ => Resources.Strings.Menu.RootMenuName;
+        public abstract string MenuTitle_ { get; }
+
+        public override string MenuTitleName_ => MenuTitle_;
+
+        public override string Name_ => InternalResources.Strings.MenuSystem.RootMenuName;
+
         public override bool DisplayInMenu(bool isPauseMenu) => true;
 
         public CentrifugeMenuAbstract()
@@ -16,6 +22,17 @@ namespace Centrifuge.Distance.GUI.Menu
         }
 
         public override void InitializeVirtual() { }
+
+        public virtual void UpdateVirtual()
+        {
+            return;
+        }
+
+        public virtual void Update()
+        {
+            return;
+        }
+
         public override void OnPanelPop() { }
     }
 }

@@ -5,8 +5,8 @@ namespace Centrifuge.Distance.Game
 {
     public class MessageBox
     {
-        private string Message = "";
-        private string Title = "";
+        private readonly string Message = "";
+        private readonly string Title = "";
         private float Time = 0.0f;
         private MessagePanelLogic.ButtonType Buttons = MessagePanelLogic.ButtonType.Ok;
 
