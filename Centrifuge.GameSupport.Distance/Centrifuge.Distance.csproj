@@ -86,6 +86,7 @@
     <Compile Include="Game\Vehicle.cs" />
     <Compile Include="Internal\VersionNumber.cs" />
     <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\MainMenuLogic\Start.cs" />
+    <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
     <Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
     <Compile Include="Systems\ExportedTypes\Harmony\Assembly-CSharp\GUtils\GetExportedTypesOfType.cs" />
     <Compile Include="Systems\ExportedTypes\TypeExportManager.cs" />

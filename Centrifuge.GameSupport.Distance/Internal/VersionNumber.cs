@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,16 +8,28 @@ namespace Centrifuge.Distance.Internal
     internal class VersionNumber : MonoBehaviour
     {
         internal static VersionNumber Instance { get; set; } = null;
+        internal static bool creatingInstance = false;
 
         internal UILabel label;
         internal UIWidget widget;
         internal UIPanel panel;
 
-        internal static void Create()
+        internal static void Create(GameObject speedrunTimerLogic = null)
         {
-            if (!Instance)
+            if (!Instance && !creatingInstance)
             {
-                GameObject alphaVersionAnchorBlueprint = GameObject.Find("Anchor : Speedrun Timer");
+                creatingInstance = true;
+
+                GameObject alphaVersionAnchorBlueprint = null;
+
+                if (speedrunTimerLogic)
+                {
+                    alphaVersionAnchorBlueprint = speedrunTimerLogic;
+                }
+                else
+                {
+                    alphaVersionAnchorBlueprint = GameObject.Find("Anchor : Speedrun Timer");
+                }
 
                 if (alphaVersionAnchorBlueprint)
                 {
@@ -35,6 +48,8 @@ namespace Centrifuge.Distance.Internal
 
                     Instance = label.gameObject.AddComponent<VersionNumber>();
                 }
+
+                creatingInstance = false;
             }
         }
 

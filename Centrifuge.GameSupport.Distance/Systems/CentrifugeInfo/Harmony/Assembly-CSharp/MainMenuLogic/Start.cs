@@ -9,7 +9,7 @@ namespace Centrifuge.Distance.Systems.CentrifugeInfo.Harmony
         [HarmonyPostfix]
         internal static void Postfix()
         {
-            VersionNumber.Create();
+            //VersionNumber.Create();
         }
     }
 }
