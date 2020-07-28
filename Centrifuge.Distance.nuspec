@@ -24,7 +24,7 @@
 
     <file src="./Centrifuge.GameSupport.Distance/bin/Release/Centrifuge.Distance.dll" target="lib/net35" />
 
-    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/Distance/Distance.dev.dll" target="lib/net35" />
+    <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/Distance/Assembly-CSharp.dll" target="lib/net35" />
     <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/NAudio.dll" target="lib/net35" />
     <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/UnityEngine.dll" target="lib/net35" />
     <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/UnityEngine.UI.dll" target="lib/net35" />

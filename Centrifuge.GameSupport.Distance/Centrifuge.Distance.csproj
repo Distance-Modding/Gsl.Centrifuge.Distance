@@ -39,8 +39,8 @@
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Distance.dev">
-      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Distance\Distance.dev.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Distance\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="LitJSON, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
