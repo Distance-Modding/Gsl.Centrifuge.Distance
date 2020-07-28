@@ -20,4 +20,9 @@ public static class System__TypeExtensions
 
         return false;
     }
+
+    public static bool HasAttribute<T>(this Type type, bool inherit = true) where T : Attribute
+    {
+        return GetAttribute<T>(type, out _, inherit);
+    }
 }

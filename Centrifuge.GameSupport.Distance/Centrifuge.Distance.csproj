@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
@@ -85,9 +88,10 @@
     <Compile Include="Game\Vehicle.cs" />
     <Compile Include="Internal\VersionNumber.cs" />
     <Compile Include="Configuration\Config.cs" />
-    <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\MainMenuLogic\Start.cs" />
     <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
+    <Compile Include="Systems\EditorTools\Attributes\Tool.cs" />
     <Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
+    <Compile Include="Systems\EditorTools\Harmony\Assembly-CSharp\ToolInputCombos\Load.cs" />
     <Compile Include="Systems\ExportedTypes\Harmony\Assembly-CSharp\GUtils\GetExportedTypesOfType.cs" />
     <Compile Include="Systems\ExportedTypes\TypeExportManager.cs" />
     <Compile Include="Systems\GUI\Controls\ActionButton.cs" />
@@ -117,9 +121,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Systems\EditorTools\Harmony\Assembly-CSharp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\AutoVersionUpdater.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
