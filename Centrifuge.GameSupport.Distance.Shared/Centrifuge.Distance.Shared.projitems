@@ -9,7 +9,7 @@
     <Import_RootNamespace>Centrifuge.Distance.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Binaries\Distance\Assembly-CSharp.dev.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Binaries\Distance\Distance.dev.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\NAudio.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.Networking.dll" />

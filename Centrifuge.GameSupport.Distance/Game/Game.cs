@@ -64,7 +64,6 @@ namespace Centrifuge.Distance.Game
 
                 return gameObject.activeSelf;
             }
-
             set
             {
                 var gameObject = GameObject.Find("AlphaVersion");

@@ -26,7 +26,7 @@ namespace Centrifuge.Distance.GUI.Menu
                 component.Destroy();
             }
 
-            var menu = parentMenu.PanelObject_.AddComponent<CentrifugeMenu>();
+            var menu = GameAPI.Instance.gameObject.AddComponent<CentrifugeMenu>();
             menu.MenuTree = menuTree;
 
             menu.CurrentPageIndex = pageIndex;
@@ -41,6 +41,10 @@ namespace Centrifuge.Distance.GUI.Menu
                     if (menu.SwitchPageOnClose)
                     {
                         ShowMenu(menuTree, parentMenu, pageIndex);
+                    }
+                    else
+                    {
+                        menu.Destroy();
                     }
                 }
             };

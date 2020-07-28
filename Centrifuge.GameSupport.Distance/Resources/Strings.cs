@@ -36,7 +36,7 @@
             {
                 public static class Gsl
                 {
-                    public static string MenuTitle => "Game Support Library Settings";
+                    public static string MenuTitle => "GSL Settings";
 
                     public static string MenuDescription => "Settings related to the common modding library(GSL).";
 

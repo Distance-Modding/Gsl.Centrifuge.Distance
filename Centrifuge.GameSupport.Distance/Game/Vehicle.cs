@@ -15,7 +15,9 @@ namespace Centrifuge.Distance.Game
                 UpdateParentObject();
 
                 if (CanOperateOnHoverScreen)
+                {
                     HoverScreenEmitter.SetTrickText(new TrickyTextLogic.TrickText(displayTime, priority, TrickyTextLogic.TrickText.TextType.standard, text));
+                }
             }
 
             public static void SetHUDText(string text, float time = 3.0f)
@@ -48,7 +50,9 @@ namespace Centrifuge.Distance.Game
             {
                 UpdateObjectReferences();
                 if (CarLogic)
+                {
                     return CarLogic.Heat_;
+                }
                 return 0f;
             }
         }
@@ -59,7 +63,9 @@ namespace Centrifuge.Distance.Game
             {
                 UpdateObjectReferences();
                 if (CarLogic)
+                {
                     return CarLogic.CarStats_.GetKilometersPerHour();
+                }
                 return 0f;
             }
         }
@@ -70,7 +76,9 @@ namespace Centrifuge.Distance.Game
             {
                 UpdateObjectReferences();
                 if (CarLogic)
+                {
                     return CarLogic.CarStats_.GetMilesPerHour();
+                }
                 return 0f;
             }
         }
@@ -86,7 +94,9 @@ namespace Centrifuge.Distance.Game
                     var flames = jets.flames_;
 
                     foreach (var flame in flames)
+                    {
                         flame.SetCustomColor(hexColor.ToColor());
+                    }
                 }
             }
         }
@@ -141,7 +151,9 @@ namespace Centrifuge.Distance.Game
             CarLogic = Utilities.FindLocalCar()?.GetComponent<CarLogic>();
 
             if (CarLogic == null)
+            {
                 CarLogic = Utilities.FindLocalCarLogic();
+            }
         }
 
 
@@ -161,7 +173,9 @@ namespace Centrifuge.Distance.Game
                 FindScreen();
 
                 if (CarScreenLogic)
+                {
                     CarScreenLogic.ClearDecodeText();
+                }
             }
 
             public static void SetTimeBarText(string text, string hexColor, float time)
@@ -169,7 +183,9 @@ namespace Centrifuge.Distance.Game
                 FindScreen();
 
                 if (CarScreenLogic)
+                {
                     CarScreenLogic.timeWidget_?.SetTimeTextToString(text, hexColor.ToColor(), time);
+                }
             }
 
             public static void WriteText(string text, float perCharacterInterval, int clearDelayUnits, float displayDelay, bool clearOnEnd, string timeBarText)
@@ -181,7 +197,9 @@ namespace Centrifuge.Distance.Game
                     var formattedForScreen = text.WordWrap(LineLength);
 
                     for (var i = 0; i < clearDelayUnits; i++)
+                    {
                         formattedForScreen += " ";
+                    }
                     CarScreenLogic.DecodeText(formattedForScreen, perCharacterInterval, displayDelay, clearOnEnd, timeBarText);
                 }
             }

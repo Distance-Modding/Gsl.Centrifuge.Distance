@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +18,6 @@ namespace Centrifuge.Distance.Internal
             if (!Instance && !creatingInstance)
             {
                 creatingInstance = true;
-
                 GameObject alphaVersionAnchorBlueprint = null;
 
                 if (speedrunTimerLogic)
@@ -68,7 +66,6 @@ namespace Centrifuge.Distance.Internal
         internal void Update()
         {
             label.text = string.Format(InternalResources.Strings.VersionInfo.Info, Centrifuge, Mods, Gsls);
-
             widget.alpha = CanDisplay ? 0.7f : 0.0f;
         }
 
@@ -92,9 +89,9 @@ namespace Centrifuge.Distance.Internal
         internal Version ReactorVersion => typeof(Reactor.API.Defaults).Assembly.GetProductVersion();
         
         internal string Centrifuge => string.Format(InternalResources.Strings.VersionInfo.CentrifugeVersion, ReactorVersion.ToString(3));
-
+        
         internal string Mods => string.Format(InternalResources.Strings.VersionInfo.CentrifugeMods, GameAPI.Instance.manager_.GetLoadedMods().Count);
-
+        
         internal string Gsls => string.Format(InternalResources.Strings.VersionInfo.CentrifugeGsls, GameAPI.Instance.manager_.GetLoadedGslIds().Count);
     }
 }

@@ -16,7 +16,7 @@ namespace Centrifuge.Distance.GUI.Menu
 
         private int PageCount => (int)Math.Max(Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage), 1);
 
-        public override string MenuTitle_ => MenuTree.Title;
+        public override string Title => MenuTree.Title;
 
         public GameObject TitleLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Title").gameObject;
         
@@ -29,9 +29,7 @@ namespace Centrifuge.Distance.GUI.Menu
         public MenuPanel MenuPanel { get; internal set; }
         
         public MenuTree MenuTree { get; internal set; } = new MenuTree("menu.centrifuge.error", "[FF0000]Error[-]");
-
-        public string Title => MenuTree.Title;
-        
+                
         public string Description { get; set; }
         
         public bool SwitchPageOnClose { get; internal set; }
@@ -150,18 +148,12 @@ namespace Centrifuge.Distance.GUI.Menu
             TitleLabel?.SetActive(true);
             UILabel TitleLabelObject = TitleLabel.GetComponent<UILabel>();
 
-            if (TitleLabelObject)
-            {
-                TitleLabelObject.text = Title;
-            }
+            (menu_.menuTitleLabel_ ?? TitleLabelObject).text = Title;
 
             DescriptionLabel?.SetActive(true);
             UILabel DescriptionLabelObject = DescriptionLabel.GetComponent<UILabel>();
 
-            if (DescriptionLabelObject)
-            {
-                DescriptionLabelObject.text = Description;
-            }
+            menu_.menuDescriptionLabel_.text_ = DescriptionLabelObject.text = Description;
         }
     }
 }

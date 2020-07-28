@@ -1,24 +1,29 @@
-﻿using Reactor.API.Attributes;
-using Reactor.API.Interfaces.Systems;
-using Reactor.API.Runtime.Patching;
-using Reactor.API.Logging;
-using System;
-using UnityEngine;
-using Centrifuge.Distance.Systems.ExportedTypes;
-using LevelEditorTools;
+﻿using Centrifuge.Distance.Configuration;
 using Centrifuge.Distance.GUI.Data;
 using Centrifuge.Distance.GUI.Menu;
+using Centrifuge.Distance.Systems.ExportedTypes;
+using LevelEditorTools;
+using Reactor.API.Attributes;
+using Reactor.API.Interfaces.Systems;
+using Reactor.API.Logging;
+using Reactor.API.Runtime.Patching;
+using System;
+using UnityEngine;
 
 namespace Centrifuge.Distance
 {
-    [GameSupportLibraryEntryPoint("com.github.reherc/Centrifuge.Distance")]
+    [GameSupportLibraryEntryPoint(GSL_ID)]
     internal sealed class GameAPI : MonoBehaviour
     {
+        public const string GSL_ID = "com.github.reherc/Centrifuge.Distance";
+
         internal static GameAPI Instance { get; set; }
 
         internal IManager manager_;
 
         internal Log logger_;
+
+        internal Config config_;
 
         public void Initialize(IManager manager)
         {
@@ -29,6 +34,8 @@ namespace Centrifuge.Distance
             Instance = this;
 
             manager_ = manager;
+
+            config_ = new Config();
 
             RegisterExportedTypes();
             CreateSettingsMenu();
@@ -56,7 +63,7 @@ namespace Centrifuge.Distance
         {
             MenuTree settingsMenu = new MenuTree("menu.gsl.distance", InternalResources.Strings.Settings.Gsl.MenuTitle);
 
-            settingsMenu.CheckBox(MenuDisplayMode.Both, "setting:show_version_info", InternalResources.Strings.Settings.Gsl.ShowVersionInfo, () => true, (_) => { }, true, InternalResources.Strings.Settings.Gsl.ShowVersionInfoDescription);
+            settingsMenu.CheckBox(MenuDisplayMode.Both, "setting:show_version_info", InternalResources.Strings.Settings.Gsl.ShowVersionInfo, () => config_.ShowVersionInfo, (value) => config_.ShowVersionInfo = value, InternalResources.Strings.Settings.Gsl.ShowVersionInfoDescription);
 
             MenuSystem.MenuTree.SubmenuButton(MenuDisplayMode.Both, "navigate:menu.gsl.distance", InternalResources.Strings.Settings.Gsl.MenuTitle.ToUpper(), settingsMenu, InternalResources.Strings.Settings.Gsl.MenuDescription);
         }

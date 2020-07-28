@@ -8,9 +8,9 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public IManager Manager { get; set; }
 
-        public abstract string MenuTitle_ { get; }
+        public abstract string Title { get; }
 
-        public override string MenuTitleName_ => MenuTitle_;
+        public override string MenuTitleName_ => Title;
 
         public override string Name_ => InternalResources.Strings.MenuSystem.RootMenuName;
 

@@ -9,6 +9,7 @@ namespace Centrifuge.Distance.GUI.Data
     public class MenuTree : List<MenuItemBase>
     {
         public string Title { get; set; }
+
         public string Id { get; private set; }
 
         public MenuTree(string id, string title)
@@ -29,12 +30,11 @@ namespace Centrifuge.Distance.GUI.Data
         }
 
         public CheckBox CheckBox(MenuDisplayMode displayMode, string id, string name, Func<bool> getter,
-            Action<bool> setter, bool defaultValue = false, string description = null)
+            Action<bool> setter, string description = null)
         {
             var checkBox = new CheckBox(displayMode, id, name)
                 .WithGetter(getter)
                 .WithSetter(setter)
-                .WithDefaultValue(defaultValue)
                 .WithDescription(description);
 
             Add(checkBox);

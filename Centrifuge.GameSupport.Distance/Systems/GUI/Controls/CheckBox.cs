@@ -38,7 +38,9 @@ namespace Centrifuge.Distance.GUI.Controls
         public override void Tweak(CentrifugeMenu menu)
         {
             if (Get == null || Set == null)
+            {
                 throw new InvalidOperationException("Cannot call Tweak with Get or Set being null.");
+            }
 
             menu.TweakBool(Name, Get(), Set, Description);
             base.Tweak(menu);
