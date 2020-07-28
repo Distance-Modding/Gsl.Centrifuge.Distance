@@ -89,7 +89,7 @@
     <Compile Include="Internal\VersionNumber.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
-    <Compile Include="Systems\EditorTools\Attributes\Tool.cs" />
+    <Compile Include="Systems\EditorTools\Attributes\EditorTool.cs" />
     <Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
     <Compile Include="Systems\EditorTools\Harmony\Assembly-CSharp\ToolInputCombos\Load.cs" />
     <Compile Include="Systems\ExportedTypes\Harmony\Assembly-CSharp\GUtils\GetExportedTypesOfType.cs" />

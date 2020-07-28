@@ -56,7 +56,7 @@ namespace Centrifuge.Distance
         private void RegisterExportedTypes()
         {
             TypeExportManager.Register<ISerializable>();
-            TypeExportManager.Register<LevelEditorTool>((type) => type.HasAttribute<ToolAttribute>());
+            TypeExportManager.Register<LevelEditorTool>((type) => type.HasAttribute<EditorToolAttribute>());
             TypeExportManager.Register<AddedComponent>();
         }
 
