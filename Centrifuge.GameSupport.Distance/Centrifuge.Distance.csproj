@@ -54,6 +54,9 @@
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Centrifuge.Mod.SDK.2.2.0\lib\net35\Reactor.API.dll</HintPath>
     </Reference>
+    <Reference Include="Reactor.dev">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Centrifuge\Reactor.dev.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,7 +91,9 @@
     <Compile Include="Game\Vehicle.cs" />
     <Compile Include="Internal\VersionNumber.cs" />
     <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Math.cs" />
     <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
+    <Compile Include="Systems\EditorScripts\Attributes\EditorScript.cs" />
     <Compile Include="Systems\EditorTools\Attributes\EditorTool.cs" />
     <Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
     <Compile Include="Systems\EditorTools\Harmony\Assembly-CSharp\ToolInputCombos\Load.cs" />
@@ -117,6 +122,8 @@
     <Compile Include="Resources\Strings.cs" />
     <Compile Include="Game\Menus.cs" />
     <Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\GetSubmenus.cs" />
+    <Compile Include="Systems\SpectrumDelayedInit\Harmony\Assembly-CSharp\GameManager\Awake.cs" />
+    <Compile Include="Systems\SpectrumDelayedInit\ReactorProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

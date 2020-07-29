@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,8 @@ namespace Centrifuge.Distance.Internal
 {
     internal class VersionNumber : MonoBehaviour
     {
+        internal const float MaximumOpacity = 0.7f;
+
         internal static VersionNumber Instance { get; set; } = null;
         internal static bool creatingInstance = false;
 
@@ -31,7 +34,7 @@ namespace Centrifuge.Distance.Internal
 
                 if (alphaVersionAnchorBlueprint)
                 {
-                    GameObject centrifugeInfoAnchor = GameObject.Instantiate(alphaVersionAnchorBlueprint, alphaVersionAnchorBlueprint.transform.parent);
+                    GameObject centrifugeInfoAnchor = Instantiate(alphaVersionAnchorBlueprint, alphaVersionAnchorBlueprint.transform.parent);
                     
                     centrifugeInfoAnchor.SetActive(true);
                     centrifugeInfoAnchor.name = "Anchor : Centrifuge Info";
@@ -60,13 +63,38 @@ namespace Centrifuge.Distance.Internal
             widget = anchorObject.GetComponent<UIWidget>();
             panel = panelObject.GetComponent<UIPanel>();
 
+            widget.alpha = 0;
+
             AdjustPosition();
         }
 
         internal void Update()
         {
             label.text = string.Format(InternalResources.Strings.VersionInfo.Info, Centrifuge, Mods, Gsls);
-            widget.alpha = CanDisplay ? 0.7f : 0.0f;
+
+            Visible = CanDisplay;
+        }
+
+        private Coroutine _transitionCoroutine = null;
+
+        private bool _visible = true;
+        internal bool Visible
+        {
+            get => _visible;
+            set
+            {
+                if (value != _visible)
+                {
+                    if (_transitionCoroutine != null)
+                    {
+                        StopCoroutine(_transitionCoroutine);
+                    }
+
+                    _transitionCoroutine = StartCoroutine(Transition(value));
+                }
+
+                _visible = value;
+            }
         }
 
         internal bool CanDisplay
@@ -76,6 +104,9 @@ namespace Centrifuge.Distance.Internal
                 bool flag = true;
                 flag &= string.Equals(SceneManager.GetActiveScene().name, "mainmenu", StringComparison.InvariantCultureIgnoreCase);
                 flag &= G.Sys.MenuPanelManager_.panelStack_.Count == 2;
+                flag &= GameAPI.Instance.config_.ShowVersionInfo;
+                flag &= G.Sys.GameManager_.IsLevelLoaded_;
+                flag &= G.Sys.GameManager_.BlackFade_.currentState_ == BlackFadeLogic.FadeState.Idle;
                 return flag;
             }
         }
@@ -84,6 +115,29 @@ namespace Centrifuge.Distance.Internal
         {
             label.SetAnchor(panel.gameObject, 21, 19, -19, -17);
             label.pivot = UIWidget.Pivot.TopLeft;
+        }
+
+        internal IEnumerator Transition(bool visible, float duration = 0.2f)
+        {
+            float target = visible ? MaximumOpacity : 0.0f;
+            float current = widget.alpha;
+
+            for (float time = 0.0f; time < duration; time += Timex.deltaTime_)
+            {
+                if (!Game.Options.General.MenuAnimations)
+                {
+                    break;
+                }
+
+                float value = MathUtil.Map(time, 0, duration, current, target);
+                widget.alpha = value;
+
+                yield return null;
+            }
+
+            widget.alpha = target;
+
+            yield break;
         }
 
         internal Version ReactorVersion => typeof(Reactor.API.Defaults).Assembly.GetProductVersion();

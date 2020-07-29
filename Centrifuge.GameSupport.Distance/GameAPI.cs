@@ -1,7 +1,8 @@
 ﻿using Centrifuge.Distance.Configuration;
+using Centrifuge.Distance.EditorScripts.Attributes;
+using Centrifuge.Distance.EditorTools.Attributes;
 using Centrifuge.Distance.GUI.Data;
 using Centrifuge.Distance.GUI.Menu;
-using Centrifuge.Distance.EditorTools.Attributes;
 using Centrifuge.Distance.Systems.ExportedTypes;
 using LevelEditorTools;
 using Reactor.API.Attributes;
@@ -57,7 +58,7 @@ namespace Centrifuge.Distance
         {
             TypeExportManager.Register<ISerializable>();
             TypeExportManager.Register<LevelEditorTool>((type) => type.HasAttribute<EditorToolAttribute>());
-            TypeExportManager.Register<AddedComponent>();
+            TypeExportManager.Register<AddedComponent>((type) => type.HasAttribute<EditorScriptAttribute>());
         }
 
         private void CreateSettingsMenu()

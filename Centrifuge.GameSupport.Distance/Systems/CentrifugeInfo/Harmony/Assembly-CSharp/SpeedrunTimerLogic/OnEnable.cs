@@ -9,8 +9,6 @@ namespace Centrifuge.Distance.Systems.CentrifugeInfo.Harmony
         [HarmonyPostfix]
         internal static void Postfix(SpeedrunTimerLogic __instance)
         {
-            GameAPI.Instance.logger_.Warning("SpeedrunTimerLogic__OnEnable");
-            
             VersionNumber.Create(__instance.gameObject);
         }
     }
