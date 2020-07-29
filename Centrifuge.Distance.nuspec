@@ -22,7 +22,7 @@
     <file src="./Centrifuge.GameSupport.Distance.Shared/mod.template.json" target="content/mod.json" />
     <file src="./Centrifuge.GameSupport.Distance.Shared/Mod.template.cs" target="content/Mod.cs" />
 
-    <file src="./Centrifuge.GameSupport.Distance/bin/Release/Centrifuge.Distance.dll" target="lib/net35" />
+    <file src="./Build/Centrifuge.Distance/Centrifuge/GameSupport/Centrifuge.Distance.dll" target="lib/net35" />
 
     <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/Distance/Assembly-CSharp.dll" target="lib/net35" />
     <file src="./Centrifuge.GameSupport.Distance.Shared/Binaries/UnityEngine/NAudio.dll" target="lib/net35" />

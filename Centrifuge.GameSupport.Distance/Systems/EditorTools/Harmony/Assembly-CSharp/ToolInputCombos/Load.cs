@@ -1,4 +1,4 @@
-﻿using Centrifuge.Distance.Systems.EditorTools.Attributes;
+﻿using Centrifuge.Distance.EditorTools.Attributes;
 using Harmony;
 using LevelEditorTools;
 using System;

@@ -1,7 +1,7 @@
 ﻿using Centrifuge.Distance.Configuration;
 using Centrifuge.Distance.GUI.Data;
 using Centrifuge.Distance.GUI.Menu;
-using Centrifuge.Distance.Systems.EditorTools.Attributes;
+using Centrifuge.Distance.EditorTools.Attributes;
 using Centrifuge.Distance.Systems.ExportedTypes;
 using LevelEditorTools;
 using Reactor.API.Attributes;
