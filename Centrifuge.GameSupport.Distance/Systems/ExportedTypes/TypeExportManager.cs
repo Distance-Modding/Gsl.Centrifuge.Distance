@@ -74,12 +74,19 @@ namespace Centrifuge.Distance.Systems.ExportedTypes
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                foreach (Type type in assembly.GetTypes())
+                try 
                 {
-                    if (type.IsSubclassOf(baseType) && ValidateType(type) && PerformTypeCheck(baseType, type))
+                    foreach (Type type in assembly.GetTypes())
                     {
-                        result.Add(type);
+                        if (type.IsSubclassOf(baseType) && ValidateType(type) && PerformTypeCheck(baseType, type))
+                        {
+                            result.Add(type);
+                        }
                     }
+                }
+                catch (ReflectionTypeLoadException)
+                {
+                    continue;
                 }
             }
 

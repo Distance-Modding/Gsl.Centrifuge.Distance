@@ -2,7 +2,6 @@
 using Reactor.Extensibility;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Centrifuge.Distance.Systems.SpectrumDelayedInit
@@ -15,10 +14,21 @@ namespace Centrifuge.Distance.Systems.SpectrumDelayedInit
 
         internal const string LateInitializeMethod = "LateInitialize";
 
+        public static HashSet<string> CachedLateInitialize = new HashSet<string>();
+
         internal static void InvokeLateInitialize()
         {
             foreach (ModHost host in Mods)
             {
+                if (CachedLateInitialize.Contains(host.ModID))
+                {
+                    continue;
+                }
+                else
+                {
+                    CachedLateInitialize.Add(host.ModID);
+                }
+
                 object instance = host.Instance;
 
                 Type type = instance.GetType();
