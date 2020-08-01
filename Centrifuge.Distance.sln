@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centrifuge.Distance", "Cent
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Centrifuge.Distance.Shared", "Centrifuge.GameSupport.Distance.Shared\Centrifuge.Distance.Shared.shproj", "{E4AC586E-AD6D-43A8-A0CB-AA4D2D6FE578}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{8A2CF43C-D2EF-4F7C-9822-BE65FF46A3AC}"
+	ProjectSection(SolutionItems) = preProject
+		Centrifuge.Distance.nuspec = Centrifuge.Distance.nuspec
+		nuget.exe = nuget.exe
+		publish-package.cmd = publish-package.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Centrifuge.GameSupport.Distance.Shared\Centrifuge.Distance.Shared.projitems*{e4ac586e-ad6d-43a8-a0cb-aa4d2d6fe578}*SharedItemsImports = 13
