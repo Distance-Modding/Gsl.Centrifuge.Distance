@@ -9,9 +9,14 @@ namespace Centrifuge.Distance.Game
     {
         public static void AddNew(MenuDisplayMode displayMode, MenuTree menuTree, string description = null)
         {
+            AddNew(displayMode, menuTree, menuTree.Title, description);
+        }
+
+        public static void AddNew(MenuDisplayMode displayMode, MenuTree menuTree, string title, string description = null)
+        {
             try
             {
-                MenuSystem.MenuTree.Add(new SubMenu(displayMode, menuTree.Id, menuTree.Title)
+                MenuSystem.MenuTree.Add(new SubMenu(displayMode, menuTree.Id, title)
                     .NavigatesTo(menuTree)
                     .WithDescription(description)
                 );
