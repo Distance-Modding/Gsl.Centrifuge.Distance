@@ -1,10 +1,11 @@
 ﻿using Reactor.API.Input;
+using Reactor.API.Interfaces.Systems;
 using Reactor.Input;
 using System;
 
 public static class HotkeyManagerExtensions
 {
-    public static Hotkey BindHotkey(this HotkeyManager m, string hotkeyString, Action action, bool isOneTime = false)
+    public static Hotkey BindHotkey(this IHotkeyManager m, string hotkeyString, Action action, bool isOneTime = false)
     {
         Hotkey hotkey = new Hotkey(hotkeyString, isOneTime);
 
@@ -13,11 +14,11 @@ public static class HotkeyManagerExtensions
         return hotkey;
     }
 
-    public static void UnbindHotkey(this HotkeyManager m, Hotkey hotkey)
+    public static void UnbindHotkey(this IHotkeyManager m, Hotkey hotkey)
     {
-        if (m.ActionHotkeys.ContainsKey(hotkey))
+        if (m is HotkeyManager manager && manager.ActionHotkeys.ContainsKey(hotkey))
         {
-            m.ActionHotkeys.Remove(hotkey);
+            manager.ActionHotkeys.Remove(hotkey);
         }
     }
 }
