@@ -78,6 +78,7 @@
     <Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
     <Compile Include="Extensions\mscorlib\System\Enum.cs" />
     <Compile Include="Extensions\mscorlib\System\Reflection\Assembly.cs" />
+    <Compile Include="Extensions\Reactor\Input\HotkeyManager.cs" />
     <Compile Include="Extensions\UnityEngine\UnityEngine\GameObject.cs" />
     <Compile Include="Extensions\mscorlib\System\String.cs" />
     <Compile Include="Extensions\mscorlib\System\Type.cs" />
