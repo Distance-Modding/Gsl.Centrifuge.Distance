@@ -140,9 +140,9 @@ namespace Centrifuge.Distance.Internal
             yield break;
         }
 
-        internal Version ReactorVersion => typeof(Reactor.API.Defaults).Assembly.GetProductVersion();
+        internal string ReactorVersion => typeof(Reactor.API.Defaults).Assembly.GetProductVersion();
         
-        internal string Centrifuge => string.Format(InternalResources.Strings.VersionInfo.CentrifugeVersion, ReactorVersion.ToString(3));
+        internal string Centrifuge => string.Format(InternalResources.Strings.VersionInfo.CentrifugeVersion, ReactorVersion);
         
         internal string Mods => string.Format(InternalResources.Strings.VersionInfo.CentrifugeMods, GameAPI.Instance.manager_.GetLoadedMods().Count);
         

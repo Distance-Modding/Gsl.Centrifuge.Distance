@@ -1,5 +1,5 @@
 ﻿using Centrifuge.Distance.GUI.Menu;
-using Harmony;
+using HarmonyLib;
 using System.Collections.Generic;
 
 namespace Centrifuge.Distance.Systems.GUI.Harmony

@@ -10,9 +10,9 @@ public static class System___Reflection__AssemblyExtensions
         return new Version(assembly.GetVersionInfo().FileVersion);
     }
 
-    public static Version GetProductVersion(this Assembly assembly)
+    public static string GetProductVersion(this Assembly assembly)
     {
-        return new Version(assembly.GetVersionInfo().ProductVersion);
+        return assembly.GetVersionInfo().ProductVersion;
     }
 
     public static FileVersionInfo GetVersionInfo(this Assembly assembly)
