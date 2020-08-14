@@ -21,23 +21,23 @@ namespace Centrifuge.Distance
 
         internal static GameAPI Instance { get; set; }
 
-        internal IManager manager_;
+        internal IManager Manager;
 
-        internal Log logger_;
+        internal Log Logger;
 
-        internal Config config_;
+        internal Config Config;
 
         public void Initialize(IManager manager)
         {
             DontDestroyOnLoad(gameObject);
 
-            logger_ = LogManager.GetForCurrentAssembly();
+            Logger = LogManager.GetForCurrentAssembly();
 
             Instance = this;
 
-            manager_ = manager;
+            Manager = manager;
 
-            config_ = new Config();
+            Config = new Config();
 
             RegisterExportedTypes();
             CreateSettingsMenu();
@@ -49,8 +49,8 @@ namespace Centrifuge.Distance
             }
             catch (Exception e)
             {
-                logger_.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
-                logger_.Exception(e);
+                Logger.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
+                Logger.Exception(e);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Centrifuge.Distance
         {
             MenuTree settingsMenu = new MenuTree("menu.gsl.distance", InternalResources.Strings.Settings.Gsl.MenuTitle);
 
-            settingsMenu.CheckBox(MenuDisplayMode.Both, "setting:show_version_info", InternalResources.Strings.Settings.Gsl.ShowVersionInfo, () => config_.ShowVersionInfo, (value) => config_.ShowVersionInfo = value, InternalResources.Strings.Settings.Gsl.ShowVersionInfoDescription);
+            settingsMenu.CheckBox(MenuDisplayMode.Both, "setting:show_version_info", InternalResources.Strings.Settings.Gsl.ShowVersionInfo, () => Config.ShowVersionInfo, (value) => Config.ShowVersionInfo = value, InternalResources.Strings.Settings.Gsl.ShowVersionInfoDescription);
 
             MenuSystem.MenuTree.SubmenuButton(MenuDisplayMode.Both, "navigate:menu.gsl.distance", InternalResources.Strings.Settings.Gsl.MenuTitle.ToUpper(), settingsMenu, InternalResources.Strings.Settings.Gsl.MenuDescription);
         }

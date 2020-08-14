@@ -1,4 +1,5 @@
 ﻿using Centrifuge.Distance.EditorTools.Attributes;
+using Centrifuge.Distance.Systems.ExportedTypes;
 using Harmony;
 using LevelEditorTools;
 using System;
@@ -24,16 +25,11 @@ namespace Centrifuge.Distance.Systems.EditorTools.Harmony
 
         internal static void AddCustomHotkeys(ref ToolInputCombos __result, char scheme)
         {
-            foreach (Type toolType in typeof(KeyboardShortcutAttribute).Assembly.GetTypes())
+            foreach (Type toolType in TypeExportManager.GetTypesOfType(typeof(LevelEditorTool)))
             {
-                if (!toolType.IsSubclassOf(typeof(LevelEditorTool)))
-                {
-                    continue;
-                }
-
                 LevelEditorTool instance = Activator.CreateInstance(toolType) as LevelEditorTool;
 
-                if (toolType.GetAttribute(out KeyboardShortcutAttribute attribute, false))
+                if (toolType.HasAttribute<EditorToolAttribute>() && toolType.GetAttribute(out KeyboardShortcutAttribute attribute, false))
                 {
                     __result.Add(attribute.Get(scheme).ToString(), instance.Info_.Name_);
                 }

@@ -8,7 +8,7 @@ namespace Centrifuge.Distance.Systems.SpectrumDelayedInit
 {
     internal static class ReactorProxy
     {
-        internal static Reactor.Manager Manager => GameAPI.Instance.manager_ as Reactor.Manager;
+        internal static Reactor.Manager Manager => GameAPI.Instance.Manager as Reactor.Manager;
 
         internal static List<ModHost> Mods => Manager.ModRegistry.Mods;
 

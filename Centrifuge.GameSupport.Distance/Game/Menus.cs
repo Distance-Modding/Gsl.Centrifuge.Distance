@@ -21,12 +21,12 @@ namespace Centrifuge.Distance.Game
                     .WithDescription(description)
                 );
 
-                GameAPI.Instance.logger_.Info($"Added new menu tree: '{menuTree.Id}', '{menuTree.Title}'...");
+                GameAPI.Instance.Logger.Info($"Added new menu tree: '{menuTree.Id}', '{menuTree.Title}'...");
             }
             catch (Exception ex)
             {
-                GameAPI.Instance.logger_.Error($"Failed to add the menu tree: '{menuTree.Id}', '{menuTree.Title}'.");
-                GameAPI.Instance.logger_.Exception(ex);
+                GameAPI.Instance.Logger.Error($"Failed to add the menu tree: '{menuTree.Id}', '{menuTree.Title}'.");
+                GameAPI.Instance.Logger.Exception(ex);
             }
         }
     }

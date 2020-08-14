@@ -15,6 +15,10 @@
         <dependency id="Centrifuge.Mod.SDK" version="2.3.0" />
       </group>
     </dependencies>
+    <contentFiles>
+      <files include="./Centrifuge.GameSupport.Distance.Shared/mod.template.json" buildAction="content"/>
+      <files include="./Centrifuge.GameSupport.Distance.Shared/mod.template.cs" buildAction="content"/>
+    </contentFiles>
   </metadata>
   <files>
     <file src="./Centrifuge.GameSupport.Distance.Shared/NuGetScripts/Init.ps1" target="tools/Init.ps1" />

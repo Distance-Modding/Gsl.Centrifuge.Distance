@@ -104,7 +104,7 @@ namespace Centrifuge.Distance.Internal
                 bool flag = true;
                 flag &= string.Equals(SceneManager.GetActiveScene().name, "mainmenu", StringComparison.InvariantCultureIgnoreCase);
                 flag &= G.Sys.MenuPanelManager_.panelStack_.Count == 2;
-                flag &= GameAPI.Instance.config_.ShowVersionInfo;
+                flag &= GameAPI.Instance.Config.ShowVersionInfo;
                 flag &= G.Sys.GameManager_.IsLevelLoaded_;
                 flag &= G.Sys.GameManager_.BlackFade_.currentState_ == BlackFadeLogic.FadeState.Idle;
                 return flag;
@@ -144,8 +144,8 @@ namespace Centrifuge.Distance.Internal
         
         internal string Centrifuge => string.Format(InternalResources.Strings.VersionInfo.CentrifugeVersion, ReactorVersion.ToString(3));
         
-        internal string Mods => string.Format(InternalResources.Strings.VersionInfo.CentrifugeMods, GameAPI.Instance.manager_.GetLoadedMods().Count);
+        internal string Mods => string.Format(InternalResources.Strings.VersionInfo.CentrifugeMods, GameAPI.Instance.Manager.GetLoadedMods().Count);
         
-        internal string Gsls => string.Format(InternalResources.Strings.VersionInfo.CentrifugeGsls, GameAPI.Instance.manager_.GetLoadedGslIds().Count);
+        internal string Gsls => string.Format(InternalResources.Strings.VersionInfo.CentrifugeGsls, GameAPI.Instance.Manager.GetLoadedGslIds().Count);
     }
 }

@@ -35,7 +35,7 @@ namespace Centrifuge.Distance.Game
 
                 if (gameObject == null)
                 {
-                    GameAPI.Instance.logger_.Error("API: Couldn't find AlphaVersion game object.");
+                    GameAPI.Instance.Logger.Error("API: Couldn't find AlphaVersion game object.");
                     return;
                 }
 
@@ -47,7 +47,7 @@ namespace Centrifuge.Distance.Game
                 }
                 else
                 {
-                    GameAPI.Instance.logger_.Error("API: AlphaVersion game object found, but no UILabel component exists.");
+                    GameAPI.Instance.Logger.Error("API: AlphaVersion game object found, but no UILabel component exists.");
                 }
             }
         }
