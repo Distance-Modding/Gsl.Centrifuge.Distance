@@ -94,6 +94,8 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
+    <Compile Include="Systems\EditorInspector\Harmony\Assembly-CSharp\NGUIObjectInspectorTabAbstract\CreateComponentInspectorsOnObject.cs" />
+    <Compile Include="Systems\EditorInspector\Harmony\Assembly-CSharp\NGUIObjectInspectorTabAbstract\CreateISerializableInspector.cs" />
     <Compile Include="Systems\EditorScripts\Attributes\EditorScript.cs" />
     <Compile Include="Systems\EditorTools\Attributes\EditorTool.cs" />
     <Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
