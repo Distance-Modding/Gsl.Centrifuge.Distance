@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 
 namespace Centrifuge.Distance.Systems.SpectrumDelayedInit.Harmony
 {

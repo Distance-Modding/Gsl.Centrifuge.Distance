@@ -1,5 +1,5 @@
 ﻿using Centrifuge.Distance.Internal;
-using Harmony;
+using HarmonyLib;
 
 namespace Centrifuge.Distance.Systems.CentrifugeInfo.Harmony
 {
