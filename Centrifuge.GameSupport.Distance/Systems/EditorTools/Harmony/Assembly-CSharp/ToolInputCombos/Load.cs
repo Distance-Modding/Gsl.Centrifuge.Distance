@@ -1,5 +1,6 @@
 ﻿using Centrifuge.Distance.EditorTools.Attributes;
-using Harmony;
+using Centrifuge.Distance.Systems.ExportedTypes;
+using HarmonyLib;
 using LevelEditorTools;
 using System;
 

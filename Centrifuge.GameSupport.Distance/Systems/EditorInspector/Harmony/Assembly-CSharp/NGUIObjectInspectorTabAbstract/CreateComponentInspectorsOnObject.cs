@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using UnityEngine;
 
 namespace Centrifuge.Distance.Systems.EditorInspector.Harmony
