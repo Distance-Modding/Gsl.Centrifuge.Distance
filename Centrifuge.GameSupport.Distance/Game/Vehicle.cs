@@ -40,7 +40,7 @@ namespace Centrifuge.Distance.Game
             }
         }
 
-        private static CarStats Stats => Utilities.FindLocalVehicleScreen().CarLogic_.CarStats_;
+        public static CarStats CarStats => Utilities.FindLocalVehicleScreen().CarLogic_.CarStats_;
 
         private static CarLogic CarLogic { get; set; }
 
