@@ -1,5 +1,6 @@
 ﻿using Centrifuge.Distance.Internal;
 using HarmonyLib;
+using System;
 
 namespace Centrifuge.Distance.Systems.CentrifugeInfo.Harmony
 {
@@ -9,7 +10,14 @@ namespace Centrifuge.Distance.Systems.CentrifugeInfo.Harmony
         [HarmonyPostfix]
         internal static void Postfix(SpeedrunTimerLogic __instance)
         {
-            VersionNumber.Create(__instance.gameObject);
+            try
+            {
+                VersionNumber.Create(__instance.gameObject);
+            }
+            catch (Exception e)
+            {
+                GameAPI.Instance.Logger.Exception(e);
+            }
         }
     }
 }

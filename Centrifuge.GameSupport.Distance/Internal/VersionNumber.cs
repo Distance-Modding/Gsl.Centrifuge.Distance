@@ -25,7 +25,7 @@ namespace Centrifuge.Distance.Internal
 
                 if (speedrunTimerLogic)
                 {
-                    alphaVersionAnchorBlueprint = speedrunTimerLogic;
+                    alphaVersionAnchorBlueprint = speedrunTimerLogic.Parent();
                 }
                 else
                 {
