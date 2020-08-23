@@ -69,7 +69,7 @@
       <HintPath>..\packages\Json.Net.Unity3D.9.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Centrifuge.Mod.SDK.3.1.0\lib\net35\Reactor.API.dll</HintPath>
+      <HintPath>..\packages\Centrifuge.Mod.SDK.3.2.0\lib\net35\Reactor.API.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.dev">
       <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Centrifuge\Reactor.dev.dll</HintPath>
