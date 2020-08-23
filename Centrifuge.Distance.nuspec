@@ -12,7 +12,7 @@
     <tags>game-modding unity-engine modding-sdk modding-framework modding-toolkit sdk distance refract</tags>
     <dependencies>
       <group targetFramework="net35">
-        <dependency id="Centrifuge.Mod.SDK" version="3.2.1" />
+        <dependency id="Centrifuge.Mod.SDK" version="3.2.0" />
       </group>
     </dependencies>
   </metadata>
