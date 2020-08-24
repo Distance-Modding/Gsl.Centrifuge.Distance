@@ -45,15 +45,15 @@ namespace Centrifuge.Distance.GUI.Menu
             if (!MenuTree.GetItems().Any())
             {
                 MessageBox.Create(InternalResources.Strings.MenuSystem.UnavailableMenuError, InternalResources.Strings.MenuSystem.UnavailableMenuErrorTitle)
-                    .SetButtons(Distance.Data.MessageButtons.Ok)
-                    .OnConfirm(() =>
+                .SetButtons(Distance.Data.MessageButtons.Ok)
+                .OnConfirm(() =>
+                {
+                    PanelManager.TopPanel_.onPanelPop_ += () =>
                     {
-                        PanelManager.TopPanel_.onPanelPop_ += () =>
-                        {
-                            MenuPanel.Pop();
-                        };
-                    })
-                    .Show();
+                        MenuPanel.Pop();
+                    };
+                })
+                .Show();
             }
 
             DisplayMenu();

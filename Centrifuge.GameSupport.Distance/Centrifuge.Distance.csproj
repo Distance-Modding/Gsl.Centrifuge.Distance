@@ -91,6 +91,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\MenuTransition.cs" />
+    <Compile Include="Data\MenuType.cs" />
     <Compile Include="Data\MessageButtons.cs" />
     <Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
     <Compile Include="Extensions\mscorlib\System\Enum.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Systems\ExportedTypes\TypeExportManager.cs" />
     <Compile Include="Systems\GUI\Controls\ActionButton.cs" />
     <Compile Include="Systems\GUI\Controls\CheckBox.cs" />
+    <Compile Include="Systems\GUI\Controls\EmptyElement.cs" />
     <Compile Include="Systems\GUI\Controls\FloatSlider.cs" />
     <Compile Include="Systems\GUI\Controls\InputPrompt.cs" />
     <Compile Include="Systems\GUI\Controls\IntegerSlider.cs" />

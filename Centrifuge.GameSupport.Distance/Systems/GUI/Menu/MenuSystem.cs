@@ -40,7 +40,7 @@ namespace Centrifuge.Distance.GUI.Menu
 
                     if (menu.SwitchPageOnClose)
                     {
-                        ShowMenu(menuTree, parentMenu, pageIndex);
+                        ShowMenu(menuTree, parentMenu, menu.CurrentPageIndex);
                     }
                     else
                     {
@@ -50,37 +50,6 @@ namespace Centrifuge.Distance.GUI.Menu
             };
 
             parentMenu.PanelObject_.SetActive(false);
-
-            G.Sys.MenuPanelManager_.Push(menu.MenuPanel);
-        }
-
-        internal static void ShowRootMenu(MenuTree menuTree, GameObject parent, int pageIndex)
-        {
-            foreach (var component in parent.GetComponents<CentrifugeMenu>())
-            {
-                component.Destroy();
-            }
-
-            var menu = parent.AddComponent<CentrifugeMenu>();
-            menu.MenuTree = menuTree;
-
-            menu.CurrentPageIndex = pageIndex;
-            menu.MenuPanel = MenuPanel.Create(menu.PanelObject_, true, true, false, true, false, false);
-
-            menu.MenuPanel.onPanelPop_ += () =>
-            {
-                if (!G.Sys.MenuPanelManager_.panelStack_.Contains(menu.MenuPanel))
-                {
-                    parent.SetActive(true);
-
-                    if (menu.SwitchPageOnClose)
-                    {
-                        ShowRootMenu(menuTree, parent, pageIndex);
-                    }
-                }
-            };
-
-            parent.SetActive(false);
 
             G.Sys.MenuPanelManager_.Push(menu.MenuPanel);
         }
