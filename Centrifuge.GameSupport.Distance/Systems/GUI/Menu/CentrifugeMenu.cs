@@ -28,8 +28,6 @@ namespace Centrifuge.Distance.GUI.Menu
         public GameObject DescriptionLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Description").gameObject;
         
         public GameObject OptionsTable => PanelObject_.transform.Find("Options/OptionsTable").gameObject;
-
-        internal MenuType Type => MenuTree.Type;
         
         public MenuPanel MenuPanel { get; internal set; }
         
@@ -38,7 +36,9 @@ namespace Centrifuge.Distance.GUI.Menu
         public string Description { get; set; }
                 
         public int CurrentPageIndex { get; internal set; } = 0;
-        
+
+        public bool ShouldAnimate { get; internal set; } = true;
+
         public string Id => MenuTree.Id;
         #endregion
 
@@ -46,8 +46,6 @@ namespace Centrifuge.Distance.GUI.Menu
         public override void InitializeVirtual()
         {
             InputManager = G.Sys.InputManager_;
-
-            
 
             DisplayMenu();
 
@@ -87,6 +85,15 @@ namespace Centrifuge.Distance.GUI.Menu
             }
         }
         #endregion
+
+        public void OnEnable()
+        {
+            if (ShouldAnimate)
+            {
+                // Reset animation duration/delay on optiontable UIExFadeIn components
+                ShouldAnimate = false;
+            }
+        }
 
         public void SwitchPage(int value = 0, bool relative = true, bool resetObjects = true)
         {
@@ -133,23 +140,6 @@ namespace Centrifuge.Distance.GUI.Menu
 
                 MenuController.Init(this);
                 MenuController.Initialize();
-            }
-        }
-
-        public void PlayMenuAnimations()
-        {
-            PanelObject_.GetComponent<UIExFancyFadeInMenu>().widgets_.Do(x => x.GetComponent<UIExFancyFadeIn>().StartAnim());
-
-            UIExFancyFadeInMenu menuFade = PanelObject_.GetComponent<UIExFancyFadeInMenu>();
-
-            if (menuFade)
-            {
-                foreach (UIWidget widget in menuFade.widgets_)
-                {
-                    UIExFancyFadeIn fade = widget.GetComponent<UIExFancyFadeIn>();
-
-                    fade?.StartAnim();
-                }
             }
         }
 

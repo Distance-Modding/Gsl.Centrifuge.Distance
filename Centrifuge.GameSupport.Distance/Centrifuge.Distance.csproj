@@ -91,8 +91,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Transition.cs" />
-    <Compile Include="Data\MenuType.cs" />
     <Compile Include="Data\MessageButtons.cs" />
     <Compile Include="Events\GUI\MenuClosed.cs" />
     <Compile Include="Events\GUI\MenuOpened.cs" />
