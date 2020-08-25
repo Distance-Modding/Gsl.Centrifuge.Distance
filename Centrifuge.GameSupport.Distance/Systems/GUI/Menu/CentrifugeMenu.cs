@@ -1,11 +1,12 @@
-﻿using Events.GUI;
+﻿using Centrifuge.Distance.Data;
 using Centrifuge.Distance.Game;
 using Centrifuge.Distance.GUI.Data;
-using Reactor.API.Interfaces.Systems;
+using Events.GUI;
+using Events.Menu;
+using HarmonyLib;
 using System;
 using System.Linq;
 using UnityEngine;
-using Centrifuge.Distance.Data;
 
 namespace Centrifuge.Distance.GUI.Menu
 {
@@ -13,9 +14,12 @@ namespace Centrifuge.Distance.GUI.Menu
     {
         private const int MaxEntriesPerPage = 9;
 
+        #region Properties / Fields / ...
         private InputManager InputManager { get; set; }
 
         private int PageCount => (int)Math.Max(Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage), 1);
+
+        private SuperDuperMenu MenuController => PanelObject_?.GetComponent<SuperDuperMenu>();
 
         public override string Title => MenuTree.Title;
 
@@ -32,40 +36,22 @@ namespace Centrifuge.Distance.GUI.Menu
         public MenuTree MenuTree { get; internal set; } = new MenuTree("menu.centrifuge.error", "[FF0000]Error[-]");
                 
         public string Description { get; set; }
-        
-        public bool SwitchPageOnClose { get; internal set; }
-        
+                
         public int CurrentPageIndex { get; internal set; } = 0;
         
         public string Id => MenuTree.Id;
+        #endregion
 
+        #region Display Entries
         public override void InitializeVirtual()
         {
             InputManager = G.Sys.InputManager_;
 
-            if (!MenuTree.GetItems().Any())
-            {
-                MessageBox.Create(InternalResources.Strings.MenuSystem.UnavailableMenuError, InternalResources.Strings.MenuSystem.UnavailableMenuErrorTitle)
-                .SetButtons(MessageButtons.Ok)
-                .OnConfirm(() =>
-                {
-                    PanelManager.TopPanel_.onPanelPop_ += () =>
-                    {
-                        MenuPanel.Pop();
-                    };
-                })
-                .Show();
-            }
+            
 
             DisplayMenu();
 
             MenuOpened.Broadcast(new MenuOpened.Data(this));
-        }
-
-        public CentrifugeMenu WithManager(IManager manager)
-        {
-            Manager = manager;
-            return this;
         }
 
         private void DisplayMenu()
@@ -86,8 +72,88 @@ namespace Centrifuge.Distance.GUI.Menu
                     }
                 }
             }
+            else
+            {
+                MessageBox.Create(InternalResources.Strings.MenuSystem.UnavailableMenuError, InternalResources.Strings.MenuSystem.UnavailableMenuErrorTitle)
+                .SetButtons(MessageButtons.Ok)
+                .OnConfirm(() =>
+                {
+                    PanelManager.TopPanel_.onPanelPop_ += () =>
+                    {
+                        MenuPanel.Pop();
+                    };
+                })
+                .Show();
+            }
+        }
+        #endregion
+
+        public void SwitchPage(int value = 0, bool relative = true, bool resetObjects = true)
+        {
+            if (relative)
+            {
+                CurrentPageIndex += value;
+            }
+            else
+            {
+                CurrentPageIndex = value;
+            }
+
+            CurrentPageIndex = CurrentPageIndex < 0 ? PageCount - 1 : CurrentPageIndex > PageCount - 1 ? 0 : CurrentPageIndex;
+
+            if (resetObjects)
+            {
+                foreach (var item in MenuController.items_)
+                {
+                    if (SuperDuperMenu.defaultFloatValues_.ContainsKey(item.name))
+                    {
+                        SuperDuperMenu.defaultFloatValues_.Remove(item.name);
+                    }
+
+                    item.gameObject.DeactivateAndDestroy();
+                }
+
+                MenuController.items_.Clear();
+
+                MenuController.actions_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
+                MenuController.toggles_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
+                MenuController.sliders_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
+                MenuController.popups_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
+
+                MenuController.actions_.Clear();
+                MenuController.toggles_.Clear();
+                MenuController.sliders_.Clear();
+                MenuController.popups_.Clear();
+
+                MenuController.buttonsTable_.Reposition();
+
+                MenuController.SetDescription(null, "");
+
+                SetDescription.Broadcast(new SetDescription.Data(string.Empty, true, string.Empty));
+
+                MenuController.Init(this);
+                MenuController.Initialize();
+            }
         }
 
+        public void PlayMenuAnimations()
+        {
+            PanelObject_.GetComponent<UIExFancyFadeInMenu>().widgets_.Do(x => x.GetComponent<UIExFancyFadeIn>().StartAnim());
+
+            UIExFancyFadeInMenu menuFade = PanelObject_.GetComponent<UIExFancyFadeInMenu>();
+
+            if (menuFade)
+            {
+                foreach (UIWidget widget in menuFade.widgets_)
+                {
+                    UIExFancyFadeIn fade = widget.GetComponent<UIExFancyFadeIn>();
+
+                    fade?.StartAnim();
+                }
+            }
+        }
+
+        #region Update
         public override void Update()
         {
             bool flag = true;
@@ -115,27 +181,13 @@ namespace Centrifuge.Distance.GUI.Menu
             {
                 if (InputManager.GetKeyUp(InputAction.MenuPageUp))
                 {
-                    CurrentPageIndex -= 1;
-                    CurrentPageIndex = CurrentPageIndex < 0 ? PageCount - 1 : CurrentPageIndex > PageCount - 1 ? 0 : CurrentPageIndex;
-                    SwitchPageOnClose = true;
+                    SwitchPage(-1);
                 }
 
                 if (InputManager.GetKeyUp(InputAction.MenuPageDown))
                 {
-                    CurrentPageIndex += 1;
-                    CurrentPageIndex = CurrentPageIndex < 0 ? PageCount - 1 : CurrentPageIndex > PageCount - 1 ? 0 : CurrentPageIndex;
-                    SwitchPageOnClose = true;
+                    SwitchPage(+1);
                 }
-            }
-
-            if (Type == MenuType.Root)
-            {
-                MenuSystem.Transition = SwitchPageOnClose ? Transition.None : Transition.Out;
-            }
-
-            if (SwitchPageOnClose)
-            {
-                MenuPanel.Pop();
             }
 
             Description = string.Format(InternalResources.Strings.MenuSystem.MenuPageDescription, CurrentPageIndex + 1, PageCount);
@@ -150,5 +202,6 @@ namespace Centrifuge.Distance.GUI.Menu
 
             menu_.menuDescriptionLabel_.text_ = DescriptionLabelObject.text = Description;
         }
+        #endregion
     }
 }

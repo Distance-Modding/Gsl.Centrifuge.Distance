@@ -78,26 +78,6 @@ namespace Centrifuge.Distance
             {
                 G.Sys.MenuPanelManager_.PopFromEscape();
             }
-            try
-            {
-                List<string> infos = new List<string>();
-
-                infos.Add($"Transition: {MenuSystem.Transition}");
-
-                var manager = G.Sys.MenuPanelManager_;
-                if (manager)
-                {
-                    var stack = manager.panelStack_;
-
-                    infos.Add($"Menus: {stack.Count} ({string.Join(">>", stack.Select(x => x.name).ToArray())})");
-                }
-
-                Console.Title = string.Join(" | ", infos.ToArray());
-            }
-            catch
-            {
-                Console.Title = $"Transition: ...";
-            }
         }
     }
 }

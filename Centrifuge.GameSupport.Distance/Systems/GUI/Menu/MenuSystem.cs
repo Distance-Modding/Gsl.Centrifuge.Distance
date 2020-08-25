@@ -12,8 +12,6 @@ namespace Centrifuge.Distance.GUI.Menu
     {
         internal static GameObject MenuBlueprint { get; set; }
 
-        internal static Transition Transition { get; set; } = Transition.In;
-
         internal static MenuTree TransitionTree { get; set; }
 
         internal static MenuTree MenuTree { get; set; }
@@ -30,43 +28,6 @@ namespace Centrifuge.Distance.GUI.Menu
                 .NavigatesTo(MenuTree)
             }
             .SetType(MenuType.None);
-
-            MenuOpened.Subscribe(OnMenuOpened);
-        }
-
-        internal static void OnMenuOpened(MenuOpened.Data data)
-        {
-            MenuPanelManager manager = G.Sys.MenuPanelManager_;
-
-            if (data.menu.MenuTree == TransitionTree)
-            {
-                // TODO: patch push and pop
-                // Pop twice when required
-                // 
-
-                switch (Transition)
-                {
-                    case Transition.In:
-                        Transition = Transition.Out;
-
-                        //manager.panelStack_.Remove(data.menu.MenuPanel);
-
-                        //ShowMenu(MenuTree, data.menu, 0);
-
-
-                        break;
-                    case Transition.Out:
-                        // Reset transition and close menu
-                        Transition = Transition.In;
-
-                        //MenuPanel panel = manager.panelStack_.Last();
-
-                        //panel.dontDisableOnPop_ = false;
-                        //panel.Pop();
-
-                        break;
-                }
-            }
         }
 
         internal static void ShowMenu(MenuTree menuTree, SuperMenu parentMenu, int pageIndex)
@@ -93,16 +54,6 @@ namespace Centrifuge.Distance.GUI.Menu
                 if (!G.Sys.MenuPanelManager_.panelStack_.Contains(menu.MenuPanel))
                 {
                     parentMenu.PanelObject_.SetActive(true);
-
-                    if (menu.SwitchPageOnClose)
-                    {
-                        menu.SwitchPageOnClose = false;
-                        ShowMenu(menuTree, parentMenu, menu.CurrentPageIndex);
-                    }
-                    else
-                    {
-                        menu.Destroy();
-                    }
                 }
             };
 

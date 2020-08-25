@@ -10,8 +10,6 @@ namespace Centrifuge.Distance.Systems.GUI.Harmony
         [HarmonyPrefix]
         internal static void Prefix(OptionsMenuLogic __instance)
         {
-            return;
-
             foreach (var menu in __instance.subMenus_)
             {
                 if (menu.GetType().IsSubclassOf(typeof(SuperMenu)))
@@ -21,7 +19,7 @@ namespace Centrifuge.Distance.Systems.GUI.Harmony
             }
 
             var CentrifugeMenu = __instance.gameObject.AddComponent<CentrifugeMenu>();
-            CentrifugeMenu.MenuTree = MenuSystem.TransitionTree;
+            CentrifugeMenu.MenuTree = MenuSystem.MenuTree;
 
             List<OptionsSubmenu> menus = new List<OptionsSubmenu>(__instance.subMenus_);
 
