@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Centrifuge.Distance.Data;
 using Centrifuge.Distance.GUI.Controls;
 using Centrifuge.Distance.GUI.Menu;
 
@@ -12,10 +13,18 @@ namespace Centrifuge.Distance.GUI.Data
 
         public string Id { get; private set; }
 
+        internal MenuType Type { get; set; } = MenuType.Submenu; 
+
         public MenuTree(string id, string title)
         {
             Id = id;
             Title = title;
+        }
+
+        internal MenuTree SetType(MenuType type)
+        {
+            Type = type;
+            return this;
         }
 
         public ActionButton ActionButton(MenuDisplayMode displayMode, string id, string name, Action action, string description = null)

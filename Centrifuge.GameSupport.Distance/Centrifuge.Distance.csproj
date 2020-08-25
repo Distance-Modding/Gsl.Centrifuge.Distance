@@ -91,9 +91,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\MenuTransition.cs" />
+    <Compile Include="Data\Transition.cs" />
     <Compile Include="Data\MenuType.cs" />
     <Compile Include="Data\MessageButtons.cs" />
+    <Compile Include="Events\GUI\MenuClosed.cs" />
+    <Compile Include="Events\GUI\MenuOpened.cs" />
     <Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
     <Compile Include="Extensions\mscorlib\System\Enum.cs" />
     <Compile Include="Extensions\mscorlib\System\Reflection\Assembly.cs" />
@@ -134,7 +136,6 @@
     <Compile Include="Systems\GUI\Data\MenuDisplayMode.cs" />
     <Compile Include="Systems\GUI\Data\MenuItemInfo.cs" />
     <Compile Include="Systems\GUI\Data\MenuTree.cs" />
-    <Compile Include="Events\GUI\MenuOpenedEvent.cs" />
     <Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\DisplaySubmenu.cs" />
     <Compile Include="Systems\GUI\Menu\CentrifugeMenu.cs" />
     <Compile Include="Systems\GUI\Menu\CentrifugeMenuAbstract.cs" />

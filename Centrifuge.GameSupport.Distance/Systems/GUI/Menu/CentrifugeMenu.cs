@@ -1,10 +1,11 @@
-﻿using Centrifuge.Distance.Events.GUI;
+﻿using Events.GUI;
 using Centrifuge.Distance.Game;
 using Centrifuge.Distance.GUI.Data;
 using Reactor.API.Interfaces.Systems;
 using System;
 using System.Linq;
 using UnityEngine;
+using Centrifuge.Distance.Data;
 
 namespace Centrifuge.Distance.GUI.Menu
 {
@@ -24,7 +25,7 @@ namespace Centrifuge.Distance.GUI.Menu
         
         public GameObject OptionsTable => PanelObject_.transform.Find("Options/OptionsTable").gameObject;
 
-        public bool IsRootMenu { get; internal set; }
+        internal MenuType Type => MenuTree.Type;
         
         public MenuPanel MenuPanel { get; internal set; }
         
@@ -45,7 +46,7 @@ namespace Centrifuge.Distance.GUI.Menu
             if (!MenuTree.GetItems().Any())
             {
                 MessageBox.Create(InternalResources.Strings.MenuSystem.UnavailableMenuError, InternalResources.Strings.MenuSystem.UnavailableMenuErrorTitle)
-                .SetButtons(Distance.Data.MessageButtons.Ok)
+                .SetButtons(MessageButtons.Ok)
                 .OnConfirm(() =>
                 {
                     PanelManager.TopPanel_.onPanelPop_ += () =>
@@ -57,6 +58,8 @@ namespace Centrifuge.Distance.GUI.Menu
             }
 
             DisplayMenu();
+
+            MenuOpened.Broadcast(new MenuOpened.Data(this));
         }
 
         public CentrifugeMenu WithManager(IManager manager)
@@ -75,32 +78,14 @@ namespace Centrifuge.Distance.GUI.Menu
                 {
                     if (i < currentTree.Count)
                     {
-                        currentTree[i].Tweak(this);
+                        currentTree[i]?.Tweak(this);
                     }
-
-                    else break;
+                    else
+                    {
+                        break;
+                    }
                 }
             }
-
-            MenuOpenedEvent.Broadcast(this);
-        }
-
-        public override void OnPanelPop()
-        {
-            if (IsRootMenu)
-            {
-                return;
-            }
-
-            foreach (var item in OptionsTable.GetChildren().GetComponent<MenuItemInfo>())
-            {
-                item.Destroy();
-            }
-
-            MenuPanel.Destroy();
-            PanelObject_.Destroy();
-
-            this.Destroy();
         }
 
         public override void Update()
@@ -118,20 +103,21 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public override void UpdateVirtual()
         {
-            G.Sys.MenuPanelManager_.SetBottomLeftActionButtonEnabled(InputAction.MenuPageUp, MenuTree.Count > MaxEntriesPerPage);
-            G.Sys.MenuPanelManager_.SetBottomLeftActionButtonEnabled(InputAction.MenuPageDown, MenuTree.Count > MaxEntriesPerPage);
+            bool multiplePages = MenuTree.Count > MaxEntriesPerPage;
+
+            G.Sys.MenuPanelManager_.SetBottomLeftActionButtonEnabled(InputAction.MenuPageUp, multiplePages);
+            G.Sys.MenuPanelManager_.SetBottomLeftActionButtonEnabled(InputAction.MenuPageDown, multiplePages);
 
             G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageUp, InternalResources.Strings.MenuSystem.MenuActionPrevious);
             G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageDown, InternalResources.Strings.MenuSystem.MenuActionNext);
             
-            if (MenuTree.Count > MaxEntriesPerPage)
+            if (multiplePages)
             {
                 if (InputManager.GetKeyUp(InputAction.MenuPageUp))
                 {
                     CurrentPageIndex -= 1;
                     CurrentPageIndex = CurrentPageIndex < 0 ? PageCount - 1 : CurrentPageIndex > PageCount - 1 ? 0 : CurrentPageIndex;
                     SwitchPageOnClose = true;
-                    MenuPanel.Pop();
                 }
 
                 if (InputManager.GetKeyUp(InputAction.MenuPageDown))
@@ -139,8 +125,17 @@ namespace Centrifuge.Distance.GUI.Menu
                     CurrentPageIndex += 1;
                     CurrentPageIndex = CurrentPageIndex < 0 ? PageCount - 1 : CurrentPageIndex > PageCount - 1 ? 0 : CurrentPageIndex;
                     SwitchPageOnClose = true;
-                    MenuPanel.Pop();
                 }
+            }
+
+            if (Type == MenuType.Root)
+            {
+                MenuSystem.Transition = SwitchPageOnClose ? Transition.None : Transition.Out;
+            }
+
+            if (SwitchPageOnClose)
+            {
+                MenuPanel.Pop();
             }
 
             Description = string.Format(InternalResources.Strings.MenuSystem.MenuPageDescription, CurrentPageIndex + 1, PageCount);

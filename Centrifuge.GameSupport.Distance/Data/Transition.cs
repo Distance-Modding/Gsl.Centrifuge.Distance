@@ -3,10 +3,10 @@
 namespace Centrifuge.Distance.Data
 {
     [Flags]
-    internal enum MenuType : uint
+    public enum Transition : uint
     {
-        None,
-        Root,
-        Submenu
+        In,
+        Out,
+        None
     }
 }
