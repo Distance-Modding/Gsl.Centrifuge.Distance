@@ -36,6 +36,25 @@ namespace Centrifuge.Distance.GUI.Menu
             menu.MenuPanel = MenuPanel.Create(menu.PanelObject_, true, true, false, true, true, true);
             menu.MenuPanel.backgroundOpacity_ = 0.75f;
 
+            menu.MenuPanel.onIsTopChanged_ += (isTop) =>
+            {
+                if (isTop)
+                {
+                    menu.ResetAnimations();
+                }
+                else
+                {
+                    if (G.Sys.MenuPanelManager_.panelStack_.Contains(menu.MenuPanel))
+                    {
+                        menu.SwitchPage(menu.CurrentPageIndex, false, true);
+                    }
+                    else
+                    {
+                        menu.SwitchPage(0, false, true);
+                    }
+                }
+            };
+
             menu.MenuPanel.onPanelPop_ += () =>
             {
                 if (!G.Sys.MenuPanelManager_.panelStack_.Contains(menu.MenuPanel))

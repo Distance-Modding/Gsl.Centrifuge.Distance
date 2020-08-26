@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngineInternal;
 
 namespace Centrifuge.Distance.GUI.Menu
 {
@@ -99,6 +98,18 @@ namespace Centrifuge.Distance.GUI.Menu
         public void OnEnable()
         {
             ResetAnimations();
+        }
+
+        public void HideElements()
+        {
+            foreach (GameObject item in OptionsTable.GetChildren())
+            {
+                if (!Blueprints.Contains(item))
+                {
+                    UIWidget widget = item.GetOrAddComponent<UIWidget>();
+                    widget.alpha = 0;
+                }
+            }
         }
 
         public void ResetAnimations()
