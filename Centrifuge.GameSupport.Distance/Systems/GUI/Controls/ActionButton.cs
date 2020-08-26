@@ -23,9 +23,11 @@ namespace Centrifuge.Distance.GUI.Controls
             {
                 throw new InvalidOperationException("OnClick action not initialized. Use WhenClicked() to configure the action.");
             }
-
-            menu.TweakAction(Name, OnClick, Description);
-            base.Tweak(menu);
+            else
+            {
+                menu.TweakAction(Name, OnClick, Description);
+                base.Tweak(menu);
+            }
         }
     }
 }

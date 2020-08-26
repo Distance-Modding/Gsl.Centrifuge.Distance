@@ -34,6 +34,7 @@ namespace Centrifuge.Distance.GUI.Menu
 
             menu.CurrentPageIndex = pageIndex;
             menu.MenuPanel = MenuPanel.Create(menu.PanelObject_, true, true, false, true, true, true);
+            menu.MenuPanel.backgroundOpacity_ = 0.75f;
 
             menu.MenuPanel.onPanelPop_ += () =>
             {

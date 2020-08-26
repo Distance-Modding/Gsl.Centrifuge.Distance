@@ -1,5 +1,6 @@
 ﻿using Centrifuge.Distance.GUI.Data;
 using Centrifuge.Distance.GUI.Menu;
+using System.Linq;
 using UnityEngine;
 
 namespace Centrifuge.Distance.GUI.Controls
@@ -29,9 +30,17 @@ namespace Centrifuge.Distance.GUI.Controls
 
         public virtual void Tweak(CentrifugeMenu menu)
         {
-            GameObject item = menu.OptionsTable.transform.Find(Name).gameObject;
-            
-            if (item)
+            //GameObject item = menu.OptionsTable.transform.Find(Name).gameObject;
+            GameObject[] items = (from x in menu.OptionsTable.GetChildren() where string.Equals(x.name, Name) select x).ToArray();
+
+            GameObject item = null;
+
+            if (items.Any())
+            {
+                item = items.First();
+            }
+
+            if (item != null)
             {
                 MenuItemInfo info = item.AddComponent<MenuItemInfo>();
                 info.Item = this;
