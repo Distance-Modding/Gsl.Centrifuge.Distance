@@ -7,10 +7,15 @@ namespace Centrifuge.Distance.GUI.Controls
     public class InputPrompt : MenuItemBase
     {
         public string Title { get; set; }
+
         public Func<string> DefaultValue { get; set; }
+
         public Func<string, string> Validator { get; set; }
+
         public Action<string> SubmitAction { get; set; }
+
         public Action<InputPrompt> CloseAction { get; set; }
+
 
         public InputPrompt(MenuDisplayMode mode, string id, string name)
             : base(mode, id, name) { }
@@ -60,6 +65,7 @@ namespace Centrifuge.Distance.GUI.Controls
                 SubmitAction?.Invoke(input);
                 return true;
             }
+
             return false;
         }
 

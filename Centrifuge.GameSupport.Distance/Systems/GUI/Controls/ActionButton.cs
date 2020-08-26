@@ -20,7 +20,9 @@ namespace Centrifuge.Distance.GUI.Controls
         public override void Tweak(CentrifugeMenu menu)
         {
             if (OnClick == null)
+            {
                 throw new InvalidOperationException("OnClick action not initialized. Use WhenClicked() to configure the action.");
+            }
 
             menu.TweakAction(Name, OnClick, Description);
             base.Tweak(menu);

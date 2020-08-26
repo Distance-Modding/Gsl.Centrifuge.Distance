@@ -7,9 +7,13 @@ namespace Centrifuge.Distance.GUI.Controls
     public class IntegerSlider : MenuItemBase
     {
         public int Minimum { get; set; }
+
         public int Maximum { get; set; }
+
         public Func<int> Get { get; set; }
+
         public Action<int> Set { get; set; }
+
         public int DefaultValue { get; set; }
 
         public IntegerSlider(MenuDisplayMode mode, string id, string name)
@@ -40,7 +44,9 @@ namespace Centrifuge.Distance.GUI.Controls
         public IntegerSlider LimitedByRange(int minimum, int maximum)
         {
             if (Minimum > Maximum)
+            {
                 throw new ArgumentOutOfRangeException("Minimum must be lower than maximum.");
+            }
 
             Minimum = minimum;
             Maximum = maximum;
@@ -51,7 +57,9 @@ namespace Centrifuge.Distance.GUI.Controls
         public override void Tweak(CentrifugeMenu menu)
         {
             if (Get == null || Set == null)
+            {
                 throw new InvalidOperationException("Cannot invoke tweak with Get or Set being null.");
+            }
 
             menu.TweakInt(Name, Get(), Minimum, Maximum, DefaultValue, Set, Description);
             base.Tweak(menu);

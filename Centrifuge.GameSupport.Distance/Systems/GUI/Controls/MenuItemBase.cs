@@ -7,8 +7,11 @@ namespace Centrifuge.Distance.GUI.Controls
     public abstract class MenuItemBase
     {
         public MenuDisplayMode Mode { get; }
+
         public string Id { get; private set; }
+
         public string Name { get; set; }
+
         public string Description { get; set; }
 
         protected MenuItemBase(MenuDisplayMode mode, string id, string name)
@@ -27,7 +30,8 @@ namespace Centrifuge.Distance.GUI.Controls
         public virtual void Tweak(CentrifugeMenu menu)
         {
             GameObject item = menu.OptionsTable.transform.Find(Name).gameObject;
-            if (item != null)
+            
+            if (item)
             {
                 MenuItemInfo info = item.AddComponent<MenuItemInfo>();
                 info.Item = this;

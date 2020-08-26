@@ -8,7 +8,9 @@ namespace Centrifuge.Distance.GUI.Controls
     public class ListBox<T> : MenuItemBase
     {
         public Func<T> Get { get; set; }
+
         public Action<T> Set { get; set; }
+
         public Dictionary<string, T> Entries { get; set; }
 
         public ListBox(MenuDisplayMode mode, string id, string name)
@@ -29,7 +31,9 @@ namespace Centrifuge.Distance.GUI.Controls
         public ListBox<T> WithEntries(Dictionary<string, T> entries)
         {
             if (entries == null)
+            {
                 entries = new Dictionary<string, T>();
+            }
 
             Entries = entries;
             return this;
@@ -38,7 +42,9 @@ namespace Centrifuge.Distance.GUI.Controls
         public override void Tweak(CentrifugeMenu menu)
         {
             if (Get == null || Set == null)
+            {
                 throw new InvalidOperationException("Cannot call TweakEnum with Get or Set being null.");
+            }
 
             menu.TweakEnum(Name, Get, Set, Description, Entries.ToArray());
             base.Tweak(menu);

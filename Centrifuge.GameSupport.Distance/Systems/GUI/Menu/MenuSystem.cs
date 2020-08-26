@@ -18,8 +18,6 @@ namespace Centrifuge.Distance.GUI.Menu
         
         internal static void ShowMenu(MenuTree menuTree, CentrifugeMenu parentMenu, int pageIndex)
         {
-            parentMenu.ShouldAnimate = true;
-
             if (menuTree.GetItems().Count is 0)
             {
                 ShowUnavailableMessage();
@@ -42,7 +40,6 @@ namespace Centrifuge.Distance.GUI.Menu
                 if (!G.Sys.MenuPanelManager_.panelStack_.Contains(menu.MenuPanel))
                 {
                     menu.SwitchPage(0, false, true);
-                    menu.ShouldAnimate = true;
                     parentMenu.PanelObject_.SetActive(true);
 
                     if (menu.MenuTree != MenuTree)
@@ -51,7 +48,6 @@ namespace Centrifuge.Distance.GUI.Menu
                     }
 
                     menu.Destroy();
-
                 }
             };
 

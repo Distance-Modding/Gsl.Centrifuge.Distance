@@ -5,8 +5,10 @@ using Events.GUI;
 using Events.Menu;
 using HarmonyLib;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngineInternal;
 
 namespace Centrifuge.Distance.GUI.Menu
 {
@@ -17,9 +19,19 @@ namespace Centrifuge.Distance.GUI.Menu
         #region Properties / Fields / ...
         private InputManager InputManager { get; set; }
 
+        private GameObject[] Blueprints => new GameObject[]
+        {
+            MenuController.actionBlueprint_,
+            MenuController.sliderBlueprint_,
+            MenuController.popupBlueprint_,
+            MenuController.toggleBlueprint_
+        };
+
         private int PageCount => (int)Math.Max(Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage), 1);
 
         private SuperDuperMenu MenuController => PanelObject_?.GetComponent<SuperDuperMenu>();
+        
+        private UIExFancyFadeInMenu MenuFade => PanelObject_?.GetComponent<UIExFancyFadeInMenu>();
 
         public override string Title => MenuTree.Title;
 
@@ -36,8 +48,6 @@ namespace Centrifuge.Distance.GUI.Menu
         public string Description { get; set; }
                 
         public int CurrentPageIndex { get; internal set; } = 0;
-
-        public bool ShouldAnimate { get; internal set; } = true;
 
         public string Id => MenuTree.Id;
         #endregion
@@ -88,10 +98,59 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public void OnEnable()
         {
-            if (ShouldAnimate)
+            ResetAnimations();
+        }
+
+        public void ResetAnimations()
+        {
+            foreach (UIWidget widget in MenuFade.widgets_.ToArray() ?? new UIWidget[0])
             {
-                // Reset animation duration/delay on optiontable UIExFadeIn components
-                ShouldAnimate = false;
+                GameAPI.Instance.Logger.Info(widget.name);
+            }
+
+            List<UIExFancyFadeIn> fades = new List<UIExFancyFadeIn>();
+
+            foreach (GameObject item in OptionsTable.GetChildren())
+            {
+                if (!Blueprints.Contains(item))
+                {
+                    GameAPI.Instance.Logger.Warning($"{item.name} - {item.HasComponent<UIExFancyFadeIn>()}");
+
+                    UIExFancyFadeIn fade = item.GetOrAddComponent<UIExFancyFadeIn>();
+
+                    fades.Add(fade);
+                }
+            }
+
+            Vector2 min = float.MinValue.ToVector2();
+            Vector2 max = float.MaxValue.ToVector2();
+
+            foreach (UIExFancyFadeIn fade in fades)
+            {
+                UIWidget widget = fade.GetComponent<UIWidget>();
+                Vector2 worldCenter = widget.worldCenter;
+
+                min = Vector2.Max(min, worldCenter);
+                max = Vector2.Min(max, worldCenter);
+            }
+
+            foreach (UIExFancyFadeIn fade in fades)
+            {
+                UIWidget widget = fade.GetComponent<UIWidget>();
+
+                Vector2 worldCenter = widget.worldCenter;
+                float num = 1 - Mathf.InverseLerp(max.y, min.y, worldCenter.y);
+
+                fade.offset_ = new Vector3(MenuFade.offset_, 0);
+                fade.duration_ = MenuFade.duration_;
+                fade.delay_ = num * MenuFade.delay_;
+
+                fade.offset_.x *= -1;
+
+                fade.initialAlpha_ = 1;
+                widget.alpha = 1;
+
+                fade.Init();
             }
         }
 
@@ -110,6 +169,13 @@ namespace Centrifuge.Distance.GUI.Menu
 
             if (resetObjects)
             {
+                void destroyObject(GameObject obj)
+                {
+                    obj.transform.parent = null;
+                    obj.DeactivateAndDestroy();
+                    DestroyImmediate(obj);
+                }
+
                 foreach (var item in MenuController.items_)
                 {
                     if (SuperDuperMenu.defaultFloatValues_.ContainsKey(item.name))
@@ -117,15 +183,22 @@ namespace Centrifuge.Distance.GUI.Menu
                         SuperDuperMenu.defaultFloatValues_.Remove(item.name);
                     }
 
+                    UIWidget widget = item.GetComponent<UIWidget>();
+
+                    if (widget && MenuFade.widgets_.Contains(widget))
+                    {
+                        MenuFade.widgets_.Remove(widget);
+                    }
+
                     item.gameObject.DeactivateAndDestroy();
                 }
 
                 MenuController.items_.Clear();
 
-                MenuController.actions_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
-                MenuController.toggles_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
-                MenuController.sliders_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
-                MenuController.popups_.Values.Do(x => x.gameObject.DeactivateAndDestroy());
+                MenuController.actions_.Values.Do(x => destroyObject(x.gameObject));
+                MenuController.toggles_.Values.Do(x => destroyObject(x.gameObject));
+                MenuController.sliders_.Values.Do(x => destroyObject(x.gameObject));
+                MenuController.popups_.Values.Do(x => destroyObject(x.gameObject));
 
                 MenuController.actions_.Clear();
                 MenuController.toggles_.Clear();

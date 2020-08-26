@@ -74,9 +74,10 @@ namespace Centrifuge.Distance
 
         public void Update()
         {
-            if (Input.GetKeyUp(KeyCode.H))
+            if (Input.GetKeyUp(KeyCode.RightControl))
             {
-                G.Sys.MenuPanelManager_.PopFromEscape();
+                //G.Sys.MenuPanelManager_.PopFromEscape();
+                Console.Clear();
             }
         }
     }

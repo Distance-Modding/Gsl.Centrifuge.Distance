@@ -7,7 +7,9 @@ namespace Centrifuge.Distance.GUI.Controls
     public class CheckBox : MenuItemBase
     {
         public Func<bool> Get { get; set; }
+
         public Action<bool> Set { get; set; }
+
         public bool DefaultValue { get; private set; }
 
         public CheckBox(MenuDisplayMode mode, string id, string name)
