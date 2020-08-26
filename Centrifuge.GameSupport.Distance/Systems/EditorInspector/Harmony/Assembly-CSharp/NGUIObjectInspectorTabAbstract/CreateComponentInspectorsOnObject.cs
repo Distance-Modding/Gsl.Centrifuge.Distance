@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Linq;
 using UnityEngine;
 
 namespace Centrifuge.Distance.Systems.EditorInspector.Harmony
@@ -11,7 +12,7 @@ namespace Centrifuge.Distance.Systems.EditorInspector.Harmony
         {
             Group group = obj.GetComponent<Group>();
 
-            if (group)
+            if (group && !group.gameObject.GetChildren().Any())
             {
                 group.inspectChildren_ = Group.InspectChildrenType.None;
             }
