@@ -103,21 +103,13 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public void ResetAnimations()
         {
-            foreach (UIWidget widget in MenuFade.widgets_.ToArray() ?? new UIWidget[0])
-            {
-                GameAPI.Instance.Logger.Info(widget.name);
-            }
-
             List<UIExFancyFadeIn> fades = new List<UIExFancyFadeIn>();
 
             foreach (GameObject item in OptionsTable.GetChildren())
             {
                 if (!Blueprints.Contains(item))
                 {
-                    GameAPI.Instance.Logger.Warning($"{item.name} - {item.HasComponent<UIExFancyFadeIn>()}");
-
                     UIExFancyFadeIn fade = item.GetOrAddComponent<UIExFancyFadeIn>();
-
                     fades.Add(fade);
                 }
             }

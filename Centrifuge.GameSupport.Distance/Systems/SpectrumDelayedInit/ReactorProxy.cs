@@ -37,6 +37,7 @@ namespace Centrifuge.Distance.Systems.SpectrumDelayedInit
 
                 if (method != null) 
                 {
+                    GameAPI.Instance.Logger.Info($"Invoking delayed initialize hook 'LateInitialize' for {host.ModID}...");
                     method.Invoke(instance, new object[1] { Manager });
                 }
             }
