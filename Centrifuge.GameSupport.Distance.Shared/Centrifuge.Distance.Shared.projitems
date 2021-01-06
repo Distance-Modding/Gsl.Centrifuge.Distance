@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Binaries\Centrifuge\Reactor.dev.dll" />
-    <None Include="$(MSBuildThisFileDirectory)Binaries\Distance\Distance.dev.dll" />
+    <None Include="$(MSBuildThisFileDirectory)Binaries\Distance\Assembly-CSharp.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\NAudio.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.dll" />
     <None Include="$(MSBuildThisFileDirectory)Binaries\UnityEngine\UnityEngine.Networking.dll" />
