@@ -156,7 +156,6 @@ namespace Centrifuge.Distance.Game
             }
         }
 
-
         public static class Screen
         {
             private static CarScreenLogic CarScreenLogic { get; set; }

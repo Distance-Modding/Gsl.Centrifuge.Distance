@@ -148,9 +148,6 @@
     <Compile Include="Systems\SpectrumDelayedInit\ReactorProxy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -175,6 +172,9 @@
       <Value>$(Configuration)</Value>
       <Visible>False</Visible>
     </T4ParameterValues>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>SET BUILD=$(ProjectDir)$(OutDir)
