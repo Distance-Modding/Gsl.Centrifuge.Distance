@@ -108,6 +108,7 @@
     <Compile Include="Game\MessageBox.cs" />
     <Compile Include="Game\Options.cs" />
     <Compile Include="Game\Profile.cs" />
+    <Compile Include="Game\Task.cs" />
     <Compile Include="Game\Vehicle.cs" />
     <Compile Include="Internal\VersionNumber.cs" />
     <Compile Include="Configuration\Config.cs" />
