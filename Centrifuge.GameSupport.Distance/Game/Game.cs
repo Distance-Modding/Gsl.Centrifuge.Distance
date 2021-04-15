@@ -1,12 +1,11 @@
 ﻿// Original code by Ciastex (http://github.com/ciastex)
 // File abailable at https://github.com/Ciastex/Spectrum/blob/5d507db3266f2331eb29feb34754252c5edb6e01/Spectrum.Interop/Game/Game.cs
 
-using System;
 using UnityEngine;
 
 namespace Centrifuge.Distance.Game
 {
-    public class Game
+	public static class Game
     {
         public static GameModeID CurrentMode => G.Sys.GameManager_.Mode_.GameModeID_;
 

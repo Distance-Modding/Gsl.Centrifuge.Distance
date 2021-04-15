@@ -16,7 +16,7 @@ namespace Centrifuge.Distance.GUI.Controls
             : base(mode, id, name)
         {
             Get = () => DefaultValue;
-            Set = new Action<bool>((value) => { });
+			Set = new Action<bool>((_) => { });
         }
 
         public CheckBox WithDefaultValue(bool defaultValue)

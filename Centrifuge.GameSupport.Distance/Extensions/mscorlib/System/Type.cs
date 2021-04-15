@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable RCS1110
+using System;
 
 public static class System__TypeExtensions
 {

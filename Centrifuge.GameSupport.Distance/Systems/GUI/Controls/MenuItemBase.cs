@@ -9,9 +9,9 @@ namespace Centrifuge.Distance.GUI.Controls
     {
         public MenuDisplayMode Mode { get; }
 
-        public string Id { get; private set; }
+		public string Id { get; }
 
-        public string Name { get; set; }
+		public string Name { get; set; }
 
         public string Description { get; set; }
 
@@ -35,9 +35,9 @@ namespace Centrifuge.Distance.GUI.Controls
 
             GameObject item = null;
 
-            if (items.Any())
+            if (items.Length > 0)
             {
-                item = items.First();
+                item = items[0];
             }
 
             if (item != null)

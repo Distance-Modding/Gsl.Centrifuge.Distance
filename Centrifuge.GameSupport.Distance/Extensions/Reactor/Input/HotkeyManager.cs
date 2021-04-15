@@ -1,4 +1,5 @@
-﻿using Reactor.API.Input;
+﻿#pragma warning disable RCS1110
+using Reactor.API.Input;
 using Reactor.API.Interfaces.Systems;
 using Reactor.Input;
 using System;

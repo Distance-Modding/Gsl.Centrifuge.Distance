@@ -148,12 +148,7 @@ namespace Centrifuge.Distance.Game
 
         private static void UpdateObjectReferences()
         {
-            CarLogic = Utilities.FindLocalCar()?.GetComponent<CarLogic>();
-
-            if (CarLogic == null)
-            {
-                CarLogic = Utilities.FindLocalCarLogic();
-            }
+            CarLogic = (Utilities.FindLocalCar()?.GetComponent<CarLogic>()) ?? Utilities.FindLocalCarLogic();
         }
 
         public static class Screen

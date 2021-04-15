@@ -16,7 +16,6 @@ namespace Centrifuge.Distance.GUI.Controls
 
         public Action<InputPrompt> CloseAction { get; set; }
 
-
         public InputPrompt(MenuDisplayMode mode, string id, string name)
             : base(mode, id, name) { }
 
@@ -28,13 +27,13 @@ namespace Centrifuge.Distance.GUI.Controls
 
         public InputPrompt WithDefaultValue(string defaultValue)
         {
-            DefaultValue = delegate () { return defaultValue; };
+            DefaultValue = () => defaultValue;
             return this;
         }
-        
+
         public InputPrompt WithDefaultValue(Func<string> defaultValue)
         {
-            DefaultValue = defaultValue ?? delegate() { return string.Empty; };
+            DefaultValue = defaultValue ?? (() => string.Empty);
             return this;
         }
 

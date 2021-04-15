@@ -1,4 +1,5 @@
-﻿using Centrifuge.Distance;
+﻿#pragma warning disable RCS1110
+using Centrifuge.Distance;
 
 public static class UIRectExtensions
 {

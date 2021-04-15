@@ -16,7 +16,7 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public override bool DisplayInMenu(bool isPauseMenu) => true;
 
-        public CentrifugeMenuAbstract()
+        protected CentrifugeMenuAbstract()
         {
             menuBlueprint_ = MenuSystem.MenuBlueprint;
         }

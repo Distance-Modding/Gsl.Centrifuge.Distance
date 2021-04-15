@@ -20,7 +20,7 @@ namespace Centrifuge.Distance.GUI.Controls
             : base(mode, id, name)
         {
             Get = () => DefaultValue;
-            Set = (value) => { };
+            Set = (_) => { };
         }
 
         public IntegerSlider WithGetter(Func<int> getter)

@@ -1,11 +1,12 @@
-﻿using System.Globalization;
+﻿#pragma warning disable RCS1110
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 public static class System__StringExtensions
 {
-    const string WordWrapRegexPattern = "(?<tag>[<][/]?[a-zA-Z0-9=\\\"#]+[>])";
+    private const string WORD_WRAP_REGEX = "(?<tag>[<][/]?[a-zA-Z0-9=\\\"#]+[>])";
 
     public static string WordWrap(this string text, int lineLength)
     {
@@ -50,7 +51,6 @@ public static class System__StringExtensions
                     {
                         position++;
                     }
-
                 }
                 while (lineEnd > position);
             }
@@ -63,9 +63,9 @@ public static class System__StringExtensions
     }
 
     // returns a length, not a position
-    internal static int LineBreak(string text, int where, int max)
+    internal static int LineBreak(this string text, int where, int max)
     {
-        Regex regex = new Regex(WordWrapRegexPattern);
+        Regex regex = new Regex(WORD_WRAP_REGEX);
         Match match;
 
         int end = text.Substring(where).IndexOf('\n');

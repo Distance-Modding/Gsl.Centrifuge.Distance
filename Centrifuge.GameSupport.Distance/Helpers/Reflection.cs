@@ -2,14 +2,13 @@
 // File abailable at https://github.com/Ciastex/Spectrum/blob/5d507db3266f2331eb29feb34754252c5edb6e01/Spectrum.Interop/Helpers/Reflection.cs
 
 #pragma warning disable IDE0034
-
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace Centrifuge.Distance.Helpers
 {
-    public class Reflection
+    public static class Reflection
     {
         public static MethodInfo GetMethod(object o, string name, bool isStatic)
         {
@@ -93,7 +92,6 @@ namespace Centrifuge.Distance.Helpers
             {
                 try
                 {
-
                     return (T)Convert.ChangeType(method.Invoke(o, parameters), typeof(T));
                 }
                 catch (Exception ex)

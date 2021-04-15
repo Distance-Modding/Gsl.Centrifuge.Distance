@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable RCS1110
+using System;
 using System.Reflection;
 
 // Code from here
@@ -6,51 +7,47 @@ using System.Reflection;
 
 public static class FieldAccess
 {
+    private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.NonPublic;
+
     public static T GetPrivateField<T>(this object obj, string name)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
-        FieldInfo field = type.GetField(name, flags);
+        FieldInfo field = type.GetField(name, FLAGS);
         return (T)field.GetValue(obj);
     }
 
     public static T GetPrivateProperty<T>(this object obj, string name)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
-        PropertyInfo field = type.GetProperty(name, flags);
+        PropertyInfo field = type.GetProperty(name, FLAGS);
         return (T)field.GetValue(obj, null);
     }
 
     public static void SetPrivateField(this object obj, string name, object value)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
-        FieldInfo field = type.GetField(name, flags);
+        FieldInfo field = type.GetField(name, FLAGS);
         field.SetValue(obj, value);
     }
 
     public static void SetPrivateProperty(this object obj, string name, object value)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
-        PropertyInfo field = type.GetProperty(name, flags);
+        PropertyInfo field = type.GetProperty(name, FLAGS);
         field.SetValue(obj, value, null);
     }
 
     public static T CallPrivateFunction<T>(this object obj, string name, params object[] param)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
-        MethodInfo method = type.GetMethod(name, flags);
+        MethodInfo method = type.GetMethod(name, FLAGS);
         return (T)method.Invoke(obj, param);
     }
 
     public static void CallPrivateMethod(this object obj, string name, params object[] param)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
-        MethodInfo method = type.GetMethod(name, flags);
+        MethodInfo method = type.GetMethod(name, FLAGS);
         method.Invoke(obj, param);
     }
 }

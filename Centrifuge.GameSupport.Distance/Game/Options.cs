@@ -369,7 +369,7 @@ namespace Centrifuge.Distance.Game
             public static bool VSync
             {
                 get => Manager.VSyncCount_ > 0;
-                set => Manager.VSyncCount_ = value == true ? 1 : 0;
+                set => Manager.VSyncCount_ = value ? 1 : 0;
             }
         }
         public static class Replay

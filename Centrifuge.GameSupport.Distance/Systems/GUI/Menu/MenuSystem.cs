@@ -1,5 +1,6 @@
 ﻿using Centrifuge.Distance.Game;
 using Centrifuge.Distance.GUI.Data;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +16,7 @@ namespace Centrifuge.Distance.GUI.Menu
         {
             MenuTree = new MenuTree("menu.centrifuge.main", InternalResources.Strings.MenuSystem.RootMenuFullName);
         }
-        
+
         internal static void ShowMenu(MenuTree menuTree, CentrifugeMenu parentMenu, int pageIndex)
         {
             if (menuTree.GetItems().Count is 0)
@@ -85,7 +86,7 @@ namespace Centrifuge.Distance.GUI.Menu
 
         public static MenuDisplayMode GetCurrentDisplayMode()
         {
-            if (SceneManager.GetActiveScene().name.ToLower() == "mainmenu")
+            if (string.Equals(SceneManager.GetActiveScene().name, "mainmenu", StringComparison.OrdinalIgnoreCase))
             {
                 return MenuDisplayMode.MainMenu;
             }

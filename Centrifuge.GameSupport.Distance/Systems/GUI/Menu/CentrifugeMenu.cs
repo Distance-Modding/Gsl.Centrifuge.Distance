@@ -29,23 +29,23 @@ namespace Centrifuge.Distance.GUI.Menu
         private int PageCount => (int)Math.Max(Math.Ceiling(MenuTree.Count / (float)MaxEntriesPerPage), 1);
 
         private SuperDuperMenu MenuController => PanelObject_?.GetComponent<SuperDuperMenu>();
-        
+
         private UIExFancyFadeInMenu MenuFade => PanelObject_?.GetComponent<UIExFancyFadeInMenu>();
 
         public override string Title => MenuTree.Title;
 
         public GameObject TitleLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Title").gameObject;
-        
+
         public GameObject DescriptionLabel => PanelObject_.transform.Find("MenuTitleTemplate/UILabel - Description").gameObject;
-        
+
         public GameObject OptionsTable => PanelObject_.transform.Find("Options/OptionsTable").gameObject;
-        
+
         public MenuPanel MenuPanel { get; internal set; }
-        
+
         public MenuTree MenuTree { get; internal set; } = new MenuTree("menu.centrifuge.error", "[FF0000]Error[-]");
-                
+
         public string Description { get; set; }
-                
+
         public int CurrentPageIndex { get; internal set; } = 0;
 
         public string Id => MenuTree.Id;
@@ -83,13 +83,7 @@ namespace Centrifuge.Distance.GUI.Menu
             {
                 MessageBox.Create(InternalResources.Strings.MenuSystem.UnavailableMenuError, InternalResources.Strings.MenuSystem.UnavailableMenuErrorTitle)
                 .SetButtons(MessageButtons.Ok)
-                .OnConfirm(() =>
-                {
-                    PanelManager.TopPanel_.onPanelPop_ += () =>
-                    {
-                        MenuPanel.Pop();
-                    };
-                })
+                .OnConfirm(() => PanelManager.TopPanel_.onPanelPop_ += () => MenuPanel.Pop())
                 .Show();
             }
         }
@@ -242,7 +236,7 @@ namespace Centrifuge.Distance.GUI.Menu
 
             G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageUp, InternalResources.Strings.MenuSystem.MenuActionPrevious);
             G.Sys.MenuPanelManager_.SetBottomLeftActionButton(InputAction.MenuPageDown, InternalResources.Strings.MenuSystem.MenuActionNext);
-            
+
             if (multiplePages)
             {
                 if (InputManager.GetKeyUp(InputAction.MenuPageUp))

@@ -10,9 +10,9 @@ namespace Centrifuge.Distance.GUI.Data
     {
         public string Title { get; set; }
 
-        public string Id { get; private set; }
+		public string Id { get; }
 
-        public MenuTree(string id, string title)
+		public MenuTree(string id, string title)
         {
             Id = id;
             Title = title;
@@ -139,9 +139,7 @@ namespace Centrifuge.Distance.GUI.Data
         {
             MenuTree tree = new MenuTree(Id, Title);
 
-            tree.AddRange<MenuItemBase>(this.Where((item) => {
-                return item.Mode.HasFlag(mode);
-            }));
+            tree.AddRange<MenuItemBase>(this.Where((item) => item.Mode.HasFlag(mode)));
 
             return tree;
         }

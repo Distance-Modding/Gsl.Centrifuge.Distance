@@ -3,7 +3,7 @@ using System;
 
 namespace Centrifuge.Distance.Game
 {
-    public class MessageBox
+    public sealed class MessageBox
     {
         private readonly string Message = "";
         private readonly string Title = "";
@@ -51,7 +51,7 @@ namespace Centrifuge.Distance.Game
 
         public void Show()
         {
-            G.Sys.MenuPanelManager_.ShowMessage(Message, Title, () => { Confirm(); }, () => { Cancel(); }, Buttons, false, UIWidget.Pivot.Center, Time); ;
+            G.Sys.MenuPanelManager_.ShowMessage(Message, Title, () => Confirm(), () => Cancel(), Buttons, false, UIWidget.Pivot.Center, Time);
         }
 
         private void EmptyAction() { }

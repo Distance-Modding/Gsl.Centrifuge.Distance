@@ -1,13 +1,11 @@
 ﻿using Reactor.API.Configuration;
-using System.Linq;
 
 namespace Centrifuge.Distance.Configuration
 {
-    public partial class Config : Settings
+	public class Config : Settings
     {
         public Config() : base("Centrifuge.Distance")
         {
-
         }
 
         private T Get<T>(string key, T @default = default)

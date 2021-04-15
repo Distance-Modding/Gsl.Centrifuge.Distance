@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable RCS1110
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
