@@ -45,11 +45,17 @@ namespace Centrifuge.Distance.Game
 			UGC.AddTask(new TaskWrapper(task(TaskStatus)));
 		}
 
+		public static TaskWrapper Wrap(IEnumerator task)
+		{
+			return new TaskWrapper(task);
+		}
+
 		public static TaskWithCoroutine Wait(float seconds)
 		{
 			return new WaitTask(seconds);
 		}
-		#region tasks
+
+		#region Tasks
 		public sealed class TaskWrapper : TaskWithCoroutine
 		{
 			private readonly IEnumerator coroutine;
