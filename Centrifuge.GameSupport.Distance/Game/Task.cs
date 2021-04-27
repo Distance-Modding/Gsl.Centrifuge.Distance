@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using TaskWithCoroutine = MonoBehaviourWithTasks.TaskWithCoroutine;
+using static MonoBehaviourWithTasks;
 
 namespace Centrifuge.Distance.Game
 {
@@ -17,25 +17,58 @@ namespace Centrifuge.Distance.Game
 
 		private static Status TaskStatus;
 
+		private static bool menuInputEnabled_ = true;
+		private static bool MenuInputEnabled
+		{
+			get => menuInputEnabled_;
+			set
+			{
+				if (value)
+				{
+					G.Sys.MenuPanelManager_.MenuInputEnabled_ = true;
+				}
+
+				menuInputEnabled_ = value;
+			}
+		}
+
 		private static int taskCount_ = 0;
 		public static int TaskCount
 		{
 			get => taskCount_;
 			private set
 			{
+				MenuPanelManager mpm = G.Sys.MenuPanelManager_;
+
 				if (value != taskCount_)
 				{
 					if (value == 0 && taskCount_ > 0)
 					{
+						mpm.enabled = true;
+						mpm.TopPanel_.gameObject.SetActive(true);
+
+						MenuInputEnabled = true;
 						UGC.DestroySteamProgressText();
 					}
 					else if (value > 0 && taskCount_ == 0)
 					{
+						mpm.TopPanel_.gameObject.SetActive(false);
+						mpm.enabled = false;
+
+						MenuInputEnabled = false;
 						UGC.SetupSteamProgressText();
 					}
 				}
 
 				taskCount_ = value;
+			}
+		}
+
+		internal static void FixedUpdate()
+		{
+			if (!MenuInputEnabled)
+			{
+				G.Sys.MenuPanelManager_.MenuInputEnabled_ = false;
 			}
 		}
 

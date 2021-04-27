@@ -10,7 +10,9 @@ namespace Centrifuge.Distance.Game
         public static GameModeID CurrentMode => G.Sys.GameManager_.Mode_.GameModeID_;
 
         public static string LevelName => G.Sys.GameManager_.LevelName_;
+
         public static string LevelPath => G.Sys.GameManager_.LevelPath_;
+
         public static string SceneName => GameManager.SceneName_;
 
         public static string WatermarkText
