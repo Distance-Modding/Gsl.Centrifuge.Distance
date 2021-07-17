@@ -13,7 +13,9 @@
     <dependencies>
       <group targetFramework="net35">
         <dependency id="Centrifuge.Mod.SDK" version="3.2.0" />
-        <dependency id="HarmonyX" version="4.2.1" />
+        <dependency id="HarmonyX" version="2.5.1" />
+        <dependency id="MonoMod.RuntimeDetour" version="21.7.8.3" />
+        <dependency id="MonoMod.Utils" version="21.7.8.3" />
       </group>
     </dependencies>
   </metadata>
