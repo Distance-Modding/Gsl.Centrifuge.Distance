@@ -23,10 +23,6 @@ jobs:
           string: ${{github.ref_name}}
           pattern: 'v'
           replace-with: ''
-      - name: Set VERSION variable from tag
-        run: 
-        - echo "VERSION=${{steps.version.outputs.replaced}}" >> $GITHUB_ENV
-        - echo $VERSION
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Setup NuGet
@@ -37,6 +33,8 @@ jobs:
         run: msbuild $env:SOLUTION -m
       - name: Create NuGet Package
         run: nuget pack $env:NUSPEC -Version $VERSION -OutputDirectory Build
+      env:
+          VERSION: ${{steps.version.outputs.replaced}}
       - name: Publish NuGet Package on GitHub
         run: nuget push Build/*.nupkg --source "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY_OWNER}/index.json" --api-key ${GITHUB_TOKEN}
         env:
