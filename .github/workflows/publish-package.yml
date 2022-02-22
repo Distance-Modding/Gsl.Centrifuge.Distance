@@ -34,7 +34,7 @@ jobs:
       - name: Create NuGet Package
         run: |
           pwd
-          tree /F .
+          tree /F /A .
           nuget pack "./${env:NUSPEC}" -Version ${env:VERSION} -OutputDirectory ./Build
         env:
           VERSION: ${{ steps.version.outputs.replaced }}
