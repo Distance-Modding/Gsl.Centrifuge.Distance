@@ -20,7 +20,7 @@ jobs:
         id: version
         uses: frabert/replace-string-action@v2.0
         with:
-          string: ${{GITHUB_REF_NAME}}
+          string: ${{github.ref_name}}
           pattern: 'v'
           replace-with: ''
       - name: Set VERSION variable from tag
