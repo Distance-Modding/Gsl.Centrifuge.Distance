@@ -1,6 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <LibName Condition="'$(LibName)' == ''">$(LibName)</LibName>
+        <LibName Condition="'$(LibName)' == ''">$(ProjectName)</LibName>
         <BuildRoot>$(SolutionDir)Build/</BuildRoot>
         <BuildDestination>$(BuildRoot)$(LibName)</BuildDestination>
         <GSLFolder>$(BuildDestination)\Centrifuge\GameSupport</GSLFolder>
