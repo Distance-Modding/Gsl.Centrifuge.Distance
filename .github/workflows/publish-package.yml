@@ -41,4 +41,4 @@ jobs:
           nuget push "./Build/*.nupkg" -Source "${env:SERVICE_INDEX}" 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+          SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository }}/index.json
