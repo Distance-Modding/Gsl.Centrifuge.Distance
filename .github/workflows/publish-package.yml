@@ -38,7 +38,7 @@ jobs:
       - name: Publish NuGet Package on GitHub
         run: |
           nuget setapikey ${env:GITHUB_TOKEN} -Source "${env:REPOSITORY}/index.json"
-          nuget push "./Build/*.nupkg" -Source "${env:REPOSITORY}/index.json" 
+          nuget push "./Build/*.nupkg" -Source "${env:SERVICE_INDEX}" 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPOSITORY: ${{ github.server_url }}/${{ github.repository_owner }}
+          SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
