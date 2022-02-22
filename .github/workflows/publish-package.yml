@@ -36,7 +36,9 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.replaced }}
       - name: Publish NuGet Package on GitHub
-        run: nuget push "./Build/*.nupkg" -Source "${env:REPOSITORY}/index.json" --api-key ${env:GITHUB_TOKEN}
+        run: |
+          nuget setapikey ${env:GITHUB_TOKEN} -Source "${env:REPOSITORY}/index.json"
+          nuget push "./Build/*.nupkg" -Source "${env:REPOSITORY}/index.json" 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.server_url }}/${{ github.repository_owner }}
