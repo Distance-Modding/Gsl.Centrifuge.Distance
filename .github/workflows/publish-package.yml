@@ -20,7 +20,7 @@ jobs:
         id: version
         uses: frabert/replace-string-action@v2.0
         with:
-          string: ${{github.ref_name}}
+          string: ${{ github.ref_name }}
           pattern: 'v'
           replace-with: ''
       - name: Setup MSBuild
@@ -32,10 +32,13 @@ jobs:
       - name: Build Solution
         run: msbuild $env:SOLUTION -m
       - name: Create NuGet Package
-        run: nuget pack "${{github.repository_workspace}}/${env:NUSPEC}" -Version $VERSION -OutputDirectory "${{github.repository_workspace}}/Build"
+        run: nuget pack "$WORKSPACE/${env:NUSPEC}" -Version $VERSION -OutputDirectory "$WORKSPACE/Build"
         env:
-          VERSION: ${{steps.version.outputs.replaced}}
+          VERSION: ${{ steps.version.outputs.replaced }}
+          WORKSPACE: ${{ github.repository_workspace }}
       - name: Publish NuGet Package on GitHub
-        run: nuget push "${{github.repository_workspace}}/Build/*.nupkg" --source "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY_OWNER}/index.json" --api-key ${GITHUB_TOKEN}
+        run: nuget push "$WORKSPACE/Build/*.nupkg" --source "$REPOSITORY/index.json" --api-key ${GITHUB_TOKEN}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WORKSPACE: ${{ github.repository_workspace }}
+          REPOSITORY: ${{ github.server_url }}/${{ github.repository_owner }}
