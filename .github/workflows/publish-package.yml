@@ -16,9 +16,16 @@ jobs:
           submodules: recursive
       - name: DotEnv
         uses: xom9ikk/dotenv@v1.0.2
+      - name: Read version from tag
+        id: version
+        uses: frabert/replace-string-action@v2.0
+        with:
+          string: ${{GITHUB_REF_NAME}}
+          pattern: 'v'
+          replace-with: ''
       - name: Set VERSION variable from tag
         run: 
-        - echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+        - echo "VERSION=${{steps.version.outputs.replaced}}" >> $GITHUB_ENV
         - echo $VERSION
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.0.2
