@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29509.3
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centrifuge.Distance", "Centrifuge.GameSupport.Distance\Centrifuge.Distance.csproj", "{C0573B40-FE3F-4E65-BB05-CC143A10A700}"
 EndProject
@@ -10,8 +10,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{8A2CF43C-D2EF-4F7C-9822-BE65FF46A3AC}"
 	ProjectSection(SolutionItems) = preProject
 		Centrifuge.Distance.nuspec = Centrifuge.Distance.nuspec
-		nuget.exe = nuget.exe
-		publish-package.cmd = publish-package.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{43AB9087-E17A-4E5F-B045-DD431613DFCE}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\publish-package.yml = .github\workflows\publish-package.yml
 	EndProjectSection
 EndProject
 Global

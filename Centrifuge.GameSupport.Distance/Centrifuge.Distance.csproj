@@ -14,8 +14,8 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <Version>3.0.0</Version>
-    <AssemblyVersion>3.0.*</AssemblyVersion>
+    <Version Condition="'$(Version)' == ''">3.0.0</Version>
+    <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">3.0.*</AssemblyVersion>
     <Deterministic>false</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -180,28 +180,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>SET BUILD=$(ProjectDir)$(OutDir)
-SET PACKAGES=$(SolutionDir)Build\
-SET SOLUTION=$(SolutionDir)
-SET NUGET=%25SOLUTION%25nuget.exe
-
-CALL :MAKEDIR "%25PACKAGES%25"
-CALL :MAKEDIR "%25PACKAGES%25\Centrifuge.Distance\Centrifuge\GameSupport"
-CALL :COPY "%25BUILD%25Centrifuge.Distance.dll" "%25PACKAGES%25Centrifuge.Distance\Centrifuge\GameSupport"
-
-%25NUGET%25 pack "%25SOLUTION%25\Centrifuge.Distance.nuspec" -Version @(VersionNumber) -OutputDirectory %25PACKAGES%25\nuget
-
-EXIT 0
-
-:MAKEDIR
-IF NOT EXIST %251 MKDIR %251
-GOTO :EOF
-
-:COPY
-XCOPY /s /Y /v %251 %252
-GOTO :EOF</PostBuildEvent>
-  </PropertyGroup>
   <Target Name="PostBuildMacros">
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
       <Output TaskParameter="Assemblies" ItemName="Targets" />
@@ -210,15 +188,5 @@ GOTO :EOF</PostBuildEvent>
       <VersionNumber Include="@(Targets->'%(Version)')" />
     </ItemGroup>
   </Target>
-  <PropertyGroup>
-    <PostBuildEventDependsOn>
-      $(PostBuildEventDependsOn);
-      PostBuildMacros;
-    </PostBuildEventDependsOn>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>SET PACKAGES=$(SolutionDir)Build\
-DEL %25PACKAGES%25nuget\*.nupkg
-EXIT 0</PreBuildEvent>
-  </PropertyGroup>
+  <Import Project="$(ProjectDir)\$(ProjectName).targets" />
 </Project>

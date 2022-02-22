@@ -1,0 +1,7 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).props"/>
+	<Target Name="CreateBuild" AfterTargets="AfterBuild">
+		<MakeDir Directories="$(GSLFolder)"/>
+		<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="$(GSLFolder)"/>
+	</Target>
+</Project>

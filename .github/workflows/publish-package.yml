@@ -1,0 +1,34 @@
+name: Publish NuGet package to GitHub registry
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+    paths-ignore:
+      - "*.md"
+jobs:
+  package:
+    name: Package and Publish GitHub Package (NuGet)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: DotEnv
+        uses: xom9ikk/dotenv@v1.0.2
+      - name: Set VERSION variable from tag
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+      - name: Restore Solution Packages
+        run: nuget restore $env:SOLUTION
+      - name: Build Solution
+        run: msbuild $env:SOLUTION -m
+      - name: Create NuGet Package
+        run: nuget pack $env:NUSPEC -Version $VERSION -OutputDirectory Build
+      - name: Publish NuGet Package on GitHub
+        run: nuget push Build/*.nupkg --source "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY_OWNER}/index.json" --api-key ${GITHUB_TOKEN}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

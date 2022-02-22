@@ -6,8 +6,8 @@
     <description>Centrifuge Game Support Library for Distance mod development</description>
     <authors>Reherc</authors>
     <!--<license type="file">LICENSE.md</license>-->
-    <repository type="git" url="https://github.com/Reherc/Centrifuge.Distance.git" branch="master" />
-    <projectUrl>https://github.com/Reherc/Centrifuge.Distance</projectUrl>
+    <repository type="git" url="https://github.com/Distance-Modding/Gsl.Centrifuge.Distance.git" branch="master" />
+    <projectUrl>https://github.com/Distance-Modding/Gsl.Centrifuge.Distance</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>game-modding unity-engine modding-sdk modding-framework modding-toolkit sdk distance refract</tags>
     <dependencies>
