@@ -32,12 +32,12 @@ jobs:
       - name: Build Solution
         run: msbuild $env:SOLUTION -m
       - name: Create NuGet Package
-        run: nuget pack ${env:NUSPEC} -Version $VERSION -OutputDirectory ./Build
+        run: nuget pack "./${env:NUSPEC}" -Version ${env:VERSION} -OutputDirectory ./Build
         working-directory: ${{ github.repository_workspace }}
         env:
           VERSION: ${{ steps.version.outputs.replaced }}
       - name: Publish NuGet Package on GitHub
-        run: nuget push "./Build/*.nupkg" --source "${REPOSITORY}/index.json" --api-key ${GITHUB_TOKEN}
+        run: nuget push "./Build/*.nupkg" --source "${env:REPOSITORY}/index.json" --api-key ${env:GITHUB_TOKEN}
         working-directory: ${{ github.repository_workspace }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
