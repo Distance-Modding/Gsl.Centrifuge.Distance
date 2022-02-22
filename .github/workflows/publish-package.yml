@@ -8,7 +8,7 @@ on:
 jobs:
   package:
     name: Package and Publish GitHub Package (NuGet)
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,7 +17,9 @@ jobs:
       - name: DotEnv
         uses: xom9ikk/dotenv@v1.0.2
       - name: Set VERSION variable from tag
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+        run: 
+        - echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+        - echo $VERSION
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Setup NuGet
