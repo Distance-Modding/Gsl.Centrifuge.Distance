@@ -32,8 +32,9 @@ jobs:
       - name: Build Solution
         run: msbuild $env:SOLUTION -m
       - name: Create NuGet Package
-        run: nuget pack "./${env:NUSPEC}" -Version ${env:VERSION} -OutputDirectory ./Build
-        working-directory: ${{ github.repository_workspace }}
+        run: 
+        - pwd
+        - nuget pack "./${env:NUSPEC}" -Version ${env:VERSION} -OutputDirectory ./Build
         env:
           VERSION: ${{ steps.version.outputs.replaced }}
       - name: Publish NuGet Package on GitHub
