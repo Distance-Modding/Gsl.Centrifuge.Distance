@@ -30,7 +30,7 @@ jobs:
       - name: Restore Solution Packages
         run: nuget restore $env:SOLUTION
       - name: Build Solution
-        run: msbuild $env:SOLUTION -m /pCOnfiguration=Release /p:Version=$env:Version
+        run: msbuild $env:SOLUTION -m /p:Configuration=Release /p:Version=$env:Version
       - name: Create NuGet Package
         run: nuget pack "./${env:NUSPEC}" -Version ${env:VERSION} -OutputDirectory ./Build
         env:
