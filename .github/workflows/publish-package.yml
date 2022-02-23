@@ -46,6 +46,6 @@ jobs:
         run: |
           $NuPkg = "./Build/${env:NUPKG}.${env:VERSION}.nupkg"
           dotnet nuget push $NuPkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
-          dotnet nuget push $NuPkg --api-key ${{ secrets.NUGET_API_TOKEN }} --source "nuget"
+          dotnet nuget push $NuPkg --api-key ${{ secrets.NUGET_API_TOKEN }} --source "nuget.org"
         env:
           VERSION: ${{ steps.version.outputs.replaced }}
