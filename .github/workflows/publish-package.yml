@@ -37,11 +37,14 @@ jobs:
           VERSION: ${{ steps.version.outputs.replaced }}
       - name: Setup DotNet
         uses: actions/setup-dotnet@v1
-      - name: Publish NuGet Package on GitHub
+      - name: Publish Package (GitHub and NuGet)
         run: |
-          dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "${env:SERVICE_INDEX}"
-          dotnet nuget push "./Build/${env:NUPKG}.${env:VERSION}.nupkg" --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+          dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "${env:GITHUB_SERVICE_INDEX}"
+          dotnet nuget push "${env:NUPKG}" --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+          dotnet nuget add source --name nuget "${env:NUGET_SERVICE_INDEX}"
+          dotnet nuget push "${env:NUPKG}" --api-key ${{ secrets.NUGET_API_TOKEN }} --source "nuget"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
           VERSION: ${{ steps.version.outputs.replaced }}
+          NUPKG: ./Build/${env:NUPKG}.${env:VERSION}.nupkg
+          GITHUB_SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+          NUGET_SERVICE_INDEX: https://api.nuget.org/v3/index.json
