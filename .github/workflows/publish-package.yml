@@ -1,4 +1,4 @@
-name: Publish NuGet package to GitHub registry
+name: Package and publish NuGet package
 on:
   push:
     tags:
@@ -10,41 +10,44 @@ jobs:
     name: Package and Publish GitHub Package (NuGet)
     runs-on: windows-latest
     steps:
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v1
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: DotEnv
+      - name: Load environment variables (dotenv)
         uses: xom9ikk/dotenv@v1.0.2
-      - name: Read version from tag
+      - name: Read version number from tag
         id: version
         uses: frabert/replace-string-action@v2.0
         with:
           string: ${{ github.ref_name }}
           pattern: 'v'
           replace-with: ''
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.0.2
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
-      - name: Restore Solution Packages
+      - name: Restore solution packages (nuget)
         run: nuget restore $env:SOLUTION
-      - name: Build Solution
+      - name: Build solution in release mode (msbuild)
         run: msbuild $env:SOLUTION -m /p:Configuration=Release /p:Version=$env:Version
-      - name: Create NuGet Package
+      - name: Package NuGet .nupkg artifact (nuget)
         run: nuget pack "./${env:NUSPEC}" -Version ${env:VERSION} -OutputDirectory ./Build
         env:
           VERSION: ${{ steps.version.outputs.replaced }}
-      - name: Setup DotNet
-        uses: actions/setup-dotnet@v1
-      - name: Publish Package (GitHub and NuGet)
+      - name: Register package sources (dotnet nuget)
         run: |
           dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "${env:GITHUB_SERVICE_INDEX}"
-          dotnet nuget push "${env:NUPKG}" --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
           dotnet nuget add source --name nuget "${env:NUGET_SERVICE_INDEX}"
-          dotnet nuget push "${env:NUPKG}" --api-key ${{ secrets.NUGET_API_TOKEN }} --source "nuget"
         env:
-          VERSION: ${{ steps.version.outputs.replaced }}
-          NUPKG: ./Build/${env:NUPKG}.${env:VERSION}.nupkg
           GITHUB_SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
           NUGET_SERVICE_INDEX: https://api.nuget.org/v3/index.json
+      - name: Push .nupkg package (dotnet)
+        run: |
+          $NuPkg = "./Build/${env:NUPKG}.${env:VERSION}.nupkg"
+          dotnet nuget push $NuPkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+          dotnet nuget push $NuPkg --api-key ${{ secrets.NUGET_API_TOKEN }} --source "nuget"
+        env:
+          VERSION: ${{ steps.version.outputs.replaced }}
