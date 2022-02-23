@@ -1,0 +1,3 @@
+[submodule "Tool.SetVersionTask"]
+	path = Tool.SetVersionTask
+	url = https://github.com/Distance-Modding/Tool.SetVersionTask
