@@ -40,10 +40,8 @@ jobs:
       - name: Register package sources (dotnet nuget)
         run: |
           dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "${env:GITHUB_SERVICE_INDEX}"
-          dotnet nuget add source --name nuget "${env:NUGET_SERVICE_INDEX}"
         env:
           GITHUB_SERVICE_INDEX: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-          NUGET_SERVICE_INDEX: https://api.nuget.org/v3/index.json
       - name: Push .nupkg package (dotnet)
         run: |
           $NuPkg = "./Build/${env:NUPKG}.${env:VERSION}.nupkg"
