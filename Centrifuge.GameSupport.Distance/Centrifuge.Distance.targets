@@ -2,7 +2,8 @@
 	<Import Project="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).props"/>
 
 	<Target Name="BuildSetVersionTask" BeforeTargets="UpdateVersionNumber">
-		<MSBuild Projects="$(SolutionDir)\Tool.SetVersionTask\SetversionTask.sln" Targets="Build" Properties="Configuration=Release;RestorePackagesConfig=true" StopOnFirstFailure="true" />
+		<Message Text="Building sub project"/>
+		<MSBuild Projects="$(SolutionDir)\Tool.SetVersionTask\SetVersionTask\SetversionTask.csproj" Targets="Build" Properties="Configuration=Release;RestorePackagesConfig=true" StopOnFirstFailure="true" />
 	</Target>
 
 	<UsingTask TaskName="SetVersion" AssemblyFile="$(SolutionDir)Tools\SetVersionTask.dll" />
