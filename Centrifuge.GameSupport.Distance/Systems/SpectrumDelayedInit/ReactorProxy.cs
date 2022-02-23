@@ -35,7 +35,7 @@ namespace Centrifuge.Distance.Systems.SpectrumDelayedInit
 
                 MethodInfo method = type.GetMethod(LateInitializeMethod, new Type[1] { typeof(IManager) });
 
-                if (method != null) 
+                if (method != null)
                 {
                     GameAPI.Instance.Logger.Info($"Invoking delayed initialize hook 'LateInitialize' for {host.ModID}...");
                     method.Invoke(instance, new object[1] { Manager });
