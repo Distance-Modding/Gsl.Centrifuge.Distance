@@ -1,5 +1,15 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<Import Project="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).props"/>
+
+	<Target Name="BuildSetVersionTask" BeforeTargets="UpdateVersionNumber">
+		<MSBuild Projects="$(SolutionDir)\Tool.SetVersionTask\SetversionTask.sln" Targets="Build" Properties="Configuration=Release;RestorePackagesConfig=true" StopOnFirstFailure="true" />
+	</Target>
+
+	<UsingTask TaskName="SetVersion" AssemblyFile="$(SolutionDir)Tools\SetVersionTask.dll" />
+	<Target Name="UpdateVersionNumber" BeforeTargets="BeforeBuild" AfterTargets="BuildSetVersionTask">
+		<SetVersion FileName="Properties\AssemblyInfo.cs" AssemblyVersion="$(Version)" AssemblyFileVersion="$(AssemblyVersion)" />
+	</Target>
+	
 	<Target Name="CreateBuild" AfterTargets="AfterBuild">
 		<MakeDir Directories="$(GSLFolder)"/>
 		<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="$(GSLFolder)"/>

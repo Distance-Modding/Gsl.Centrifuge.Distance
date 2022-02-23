@@ -2,191 +2,194 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProjectGuid>{C0573B40-FE3F-4E65-BB05-CC143A10A700}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace>Centrifuge.Distance</RootNamespace>
-	<AssemblyName>Centrifuge.Distance</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<Deterministic>true</Deterministic>
-	<NuGetPackageImportStamp></NuGetPackageImportStamp>
-	<AssemblyVersion Condition="'$(Version)' != ''">$(Version)</AssemblyVersion>
-	<Version Condition="'$(Version)' == ''">4.0.0</Version>
-	<AssemblyVersion Condition="'$(AssemblyVersion)' == ''">4.0.*</AssemblyVersion>
-	<Deterministic>false</Deterministic>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0573B40-FE3F-4E65-BB05-CC143A10A700}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Centrifuge.Distance</RootNamespace>
+    <AssemblyName>Centrifuge.Distance</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <AssemblyVersion Condition="'$(Version)' != ''">$(Version)</AssemblyVersion>
+    <Version Condition="'$(Version)' == ''">4.0.0</Version>
+    <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">4.0.0</AssemblyVersion>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-	<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="0Harmony, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-	  <HintPath>..\packages\HarmonyX.2.5.1\lib\net35\0Harmony.dll</HintPath>
-	</Reference>
-	<Reference Include="Assembly-CSharp">
-	  <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Distance\Assembly-CSharp.dll</HintPath>
-	</Reference>
-	<Reference Include="Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-	  <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.dll</HintPath>
-	</Reference>
-	<Reference Include="Mono.Cecil.Mdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-	  <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.Mdb.dll</HintPath>
-	</Reference>
-	<Reference Include="Mono.Cecil.Pdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-	  <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.Pdb.dll</HintPath>
-	</Reference>
-	<Reference Include="Mono.Cecil.Rocks, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-	  <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.Rocks.dll</HintPath>
-	</Reference>
-	<Reference Include="MonoMod.RuntimeDetour, Version=21.7.8.3, Culture=neutral, processorArchitecture=MSIL">
-	  <HintPath>..\packages\MonoMod.RuntimeDetour.21.7.8.3\lib\net35\MonoMod.RuntimeDetour.dll</HintPath>
-	</Reference>
-	<Reference Include="MonoMod.Utils, Version=21.7.8.3, Culture=neutral, processorArchitecture=MSIL">
-	  <HintPath>..\packages\MonoMod.Utils.21.7.8.3\lib\net35\MonoMod.Utils.dll</HintPath>
-	</Reference>
-	<Reference Include="NAudio">
-	  <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\NAudio.dll</HintPath>
-	</Reference>
-	<Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-	  <HintPath>..\packages\Json.Net.Unity3D.9.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
-	</Reference>
-	<Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-	  <HintPath>..\packages\Centrifuge.Mod.SDK.3.2.0\lib\net35\Reactor.API.dll</HintPath>
-	</Reference>
-	<Reference Include="Reactor.dev">
-	  <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Centrifuge\Reactor.dev.dll</HintPath>
-	</Reference>
-	<Reference Include="System" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="System.Data.DataSetExtensions" />
-	<Reference Include="System.Data" />
-	<Reference Include="System.Xml" />
-	<Reference Include="UnityEngine">
-	  <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEngine.Networking">
-	  <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\UnityEngine.Networking.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEngine.UI">
-	  <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\UnityEngine.UI.dll</HintPath>
-	</Reference>
+    <Reference Include="0Harmony, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HarmonyX.2.5.1\lib\net35\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Distance\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour, Version=21.7.8.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoMod.RuntimeDetour.21.7.8.3\lib\net35\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils, Version=21.7.8.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoMod.Utils.21.7.8.3\lib\net35\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.Unity3D.9.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Centrifuge.Mod.SDK.3.2.0\lib\net35\Reactor.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Reactor.dev">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\Centrifuge\Reactor.dev.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\Centrifuge.GameSupport.Distance.Shared\Binaries\UnityEngine\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-	<Compile Include="Data\MessageButtons.cs" />
-	<Compile Include="Events\GUI\MenuClosed.cs" />
-	<Compile Include="Events\GUI\MenuOpened.cs" />
-	<Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
-	<Compile Include="Extensions\mscorlib\System\Enum.cs" />
-	<Compile Include="Extensions\mscorlib\System\Reflection\Assembly.cs" />
-	<Compile Include="Extensions\Reactor\Input\HotkeyManager.cs" />
-	<Compile Include="Extensions\UnityEngine\UnityEngine\GameObject.cs" />
-	<Compile Include="Extensions\mscorlib\System\String.cs" />
-	<Compile Include="Extensions\mscorlib\System\Type.cs" />
-	<Compile Include="FieldAccess.cs" />
-	<Compile Include="GameAPI.cs" />
-	<Compile Include="Game\Cheats.cs" />
-	<Compile Include="Game\Game.cs" />
-	<Compile Include="Game\MessageBox.cs" />
-	<Compile Include="Game\Options.cs" />
-	<Compile Include="Game\Profile.cs" />
-	<Compile Include="Game\Task.cs" />
-	<Compile Include="Game\Vehicle.cs" />
-	<Compile Include="Internal\VersionNumber.cs" />
-	<Compile Include="Configuration\Config.cs" />
-	<Compile Include="Math.cs" />
-	<Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
-	<Compile Include="Systems\EditorInspector\Harmony\Assembly-CSharp\NGUIObjectInspectorTabAbstract\CreateComponentInspectorsOnObject.cs" />
-	<Compile Include="Systems\EditorInspector\Harmony\Assembly-CSharp\NGUIObjectInspectorTabAbstract\CreateISerializableInspector.cs" />
-	<Compile Include="Systems\EditorScripts\Attributes\EditorScript.cs" />
-	<Compile Include="Systems\EditorTools\Attributes\EditorTool.cs" />
-	<Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
-	<Compile Include="Systems\EditorTools\Harmony\Assembly-CSharp\ToolInputCombos\Load.cs" />
-	<Compile Include="Systems\ExportedTypes\Harmony\Assembly-CSharp\GUtils\GetExportedTypesOfType.cs" />
-	<Compile Include="Systems\ExportedTypes\TypeExportManager.cs" />
-	<Compile Include="Systems\GUI\Controls\ActionButton.cs" />
-	<Compile Include="Systems\GUI\Controls\CheckBox.cs" />
-	<Compile Include="Systems\GUI\Controls\EmptyElement.cs" />
-	<Compile Include="Systems\GUI\Controls\FloatSlider.cs" />
-	<Compile Include="Systems\GUI\Controls\InputPrompt.cs" />
-	<Compile Include="Systems\GUI\Controls\IntegerSlider.cs" />
-	<Compile Include="Systems\GUI\Controls\ListBox.cs" />
-	<Compile Include="Systems\GUI\Controls\MenuItemBase.cs" />
-	<Compile Include="Systems\GUI\Controls\PasswordPrompt.cs" />
-	<Compile Include="Systems\GUI\Controls\SubMenu.cs" />
-	<Compile Include="Systems\GUI\Data\MenuDisplayMode.cs" />
-	<Compile Include="Systems\GUI\Data\MenuItemInfo.cs" />
-	<Compile Include="Systems\GUI\Data\MenuTree.cs" />
-	<Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\DisplaySubmenu.cs" />
-	<Compile Include="Systems\GUI\Menu\CentrifugeMenu.cs" />
-	<Compile Include="Systems\GUI\Menu\CentrifugeMenuAbstract.cs" />
-	<Compile Include="Systems\GUI\Menu\MenuSystem.cs" />
-	<Compile Include="Helpers\Reflection.cs" />
-	<Compile Include="Helpers\Utilities.cs" />
-	<Compile Include="Properties\AssemblyInfo.cs" />
-	<Compile Include="Resources\Strings.cs" />
-	<Compile Include="Game\Menus.cs" />
-	<Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\GetSubmenus.cs" />
-	<Compile Include="Systems\SpectrumDelayedInit\Harmony\Assembly-CSharp\GameManager\Awake.cs" />
-	<Compile Include="Systems\SpectrumDelayedInit\ReactorProxy.cs" />
+    <Compile Include="Data\MessageButtons.cs" />
+    <Compile Include="Events\GUI\MenuClosed.cs" />
+    <Compile Include="Events\GUI\MenuOpened.cs" />
+    <Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
+    <Compile Include="Extensions\mscorlib\System\Enum.cs" />
+    <Compile Include="Extensions\mscorlib\System\Reflection\Assembly.cs" />
+    <Compile Include="Extensions\Reactor\Input\HotkeyManager.cs" />
+    <Compile Include="Extensions\UnityEngine\UnityEngine\GameObject.cs" />
+    <Compile Include="Extensions\mscorlib\System\String.cs" />
+    <Compile Include="Extensions\mscorlib\System\Type.cs" />
+    <Compile Include="FieldAccess.cs" />
+    <Compile Include="GameAPI.cs" />
+    <Compile Include="Game\Cheats.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="Game\MessageBox.cs" />
+    <Compile Include="Game\Options.cs" />
+    <Compile Include="Game\Profile.cs" />
+    <Compile Include="Game\Task.cs" />
+    <Compile Include="Game\Vehicle.cs" />
+    <Compile Include="Internal\VersionNumber.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Math.cs" />
+    <Compile Include="Systems\CentrifugeInfo\Harmony\Assembly-CSharp\SpeedrunTimerLogic\OnEnable.cs" />
+    <Compile Include="Systems\EditorInspector\Harmony\Assembly-CSharp\NGUIObjectInspectorTabAbstract\CreateComponentInspectorsOnObject.cs" />
+    <Compile Include="Systems\EditorInspector\Harmony\Assembly-CSharp\NGUIObjectInspectorTabAbstract\CreateISerializableInspector.cs" />
+    <Compile Include="Systems\EditorScripts\Attributes\EditorScript.cs" />
+    <Compile Include="Systems\EditorTools\Attributes\EditorTool.cs" />
+    <Compile Include="Systems\EditorTools\Attributes\KeyboardShortcut.cs" />
+    <Compile Include="Systems\EditorTools\Harmony\Assembly-CSharp\ToolInputCombos\Load.cs" />
+    <Compile Include="Systems\ExportedTypes\Harmony\Assembly-CSharp\GUtils\GetExportedTypesOfType.cs" />
+    <Compile Include="Systems\ExportedTypes\TypeExportManager.cs" />
+    <Compile Include="Systems\GUI\Controls\ActionButton.cs" />
+    <Compile Include="Systems\GUI\Controls\CheckBox.cs" />
+    <Compile Include="Systems\GUI\Controls\EmptyElement.cs" />
+    <Compile Include="Systems\GUI\Controls\FloatSlider.cs" />
+    <Compile Include="Systems\GUI\Controls\InputPrompt.cs" />
+    <Compile Include="Systems\GUI\Controls\IntegerSlider.cs" />
+    <Compile Include="Systems\GUI\Controls\ListBox.cs" />
+    <Compile Include="Systems\GUI\Controls\MenuItemBase.cs" />
+    <Compile Include="Systems\GUI\Controls\PasswordPrompt.cs" />
+    <Compile Include="Systems\GUI\Controls\SubMenu.cs" />
+    <Compile Include="Systems\GUI\Data\MenuDisplayMode.cs" />
+    <Compile Include="Systems\GUI\Data\MenuItemInfo.cs" />
+    <Compile Include="Systems\GUI\Data\MenuTree.cs" />
+    <Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\DisplaySubmenu.cs" />
+    <Compile Include="Systems\GUI\Menu\CentrifugeMenu.cs" />
+    <Compile Include="Systems\GUI\Menu\CentrifugeMenuAbstract.cs" />
+    <Compile Include="Systems\GUI\Menu\MenuSystem.cs" />
+    <Compile Include="Helpers\Reflection.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Strings.cs" />
+    <Compile Include="Game\Menus.cs" />
+    <Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\GetSubmenus.cs" />
+    <Compile Include="Systems\SpectrumDelayedInit\Harmony\Assembly-CSharp\GameManager\Awake.cs" />
+    <Compile Include="Systems\SpectrumDelayedInit\ReactorProxy.cs" />
   </ItemGroup>
   <ItemGroup>
-	<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-	<!-- 15.0 is for VS2017, adjust if necessary -->
-	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
-	<VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-	<!-- This is what will cause the templates to be transformed when the project is built (default is false) -->
-	<TransformOnBuild>true</TransformOnBuild>
-	<!-- Set to true to force overwriting of read-only output files, e.g. if they're not checked out (default is false) -->
-	<OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
-	<!-- Set to false to transform files even if the output appears to be up-to-date (default is true)  -->
-	<TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+    <!-- 15.0 is for VS2017, adjust if necessary -->
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <!-- This is what will cause the templates to be transformed when the project is built (default is false) -->
+    <TransformOnBuild>true</TransformOnBuild>
+    <!-- Set to true to force overwriting of read-only output files, e.g. if they're not checked out (default is false) -->
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <!-- Set to false to transform files even if the output appears to be up-to-date (default is true)  -->
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
   <ItemGroup>
-	<T4ParameterValues Include="SolutionDir">
-	  <Value>$(SolutionDir)</Value>
-	  <Visible>False</Visible>
-	</T4ParameterValues>
-	<T4ParameterValues Include="Configuration">
-	  <Value>$(Configuration)</Value>
-	  <Visible>False</Visible>
-	</T4ParameterValues>
+    <T4ParameterValues Include="SolutionDir">
+      <Value>$(SolutionDir)</Value>
+      <Visible>False</Visible>
+    </T4ParameterValues>
+    <T4ParameterValues Include="Configuration">
+      <Value>$(Configuration)</Value>
+      <Visible>False</Visible>
+    </T4ParameterValues>
   </ItemGroup>
   <ItemGroup>
-	<None Include="packages.config" />
+    <None Include="Centrifuge.Distance.props" />
+    <None Include="Centrifuge.Distance.targets" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Target Name="PostBuildMacros">
-	<GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
-	  <Output TaskParameter="Assemblies" ItemName="Targets" />
-	</GetAssemblyIdentity>
-	<ItemGroup>
-	  <VersionNumber Include="@(Targets->'%(Version)')" />
-	</ItemGroup>
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="@(Targets->'%(Version)')" />
+    </ItemGroup>
   </Target>
   <Import Project="$(ProjectDir)\$(ProjectName).targets" />
 </Project>
