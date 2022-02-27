@@ -6,8 +6,8 @@
 		<MSBuild Projects="$(SolutionDir)\Tool.SetVersionTask\SetVersionTask\SetversionTask.csproj" Targets="Build" Properties="Configuration=Release;RestorePackagesConfig=true" StopOnFirstFailure="true" />
 	</Target>
 
-	<UsingTask TaskName="SetVersion" AssemblyFile="$(SolutionDir)Tools\SetVersionTask.dll" />
-	<Target Name="UpdateVersionNumber" BeforeTargets="BeforeBuild" AfterTargets="BuildSetVersionTask">
+	<UsingTask TaskName="SetVersion" AssemblyFile="$(SolutionDir)Tools\SetVersionTask.dll" Condition="'$(Confoguration)'=='Release'"/>
+	<Target Name="UpdateVersionNumber" BeforeTargets="BeforeBuild" AfterTargets="BuildSetVersionTask" Condition="'$(Confoguration)'=='Release'">
 		<SetVersion FileName="Properties\AssemblyInfo.cs" AssemblyVersion="$(Version)" AssemblyFileVersion="$(AssemblyVersion)" />
 	</Target>
 	

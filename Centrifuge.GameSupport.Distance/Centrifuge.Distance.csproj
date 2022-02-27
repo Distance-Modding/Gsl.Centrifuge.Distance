@@ -96,10 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\MessageButtons.cs" />
+    <Compile Include="Data\Notifications\Notification.cs" />
     <Compile Include="Events\GUI\MenuClosed.cs" />
     <Compile Include="Events\GUI\MenuOpened.cs" />
     <Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
     <Compile Include="Extensions\mscorlib\System\Enum.cs" />
+    <Compile Include="Extensions\mscorlib\System\Collections\Generic\Queue.cs" />
     <Compile Include="Extensions\mscorlib\System\Reflection\Assembly.cs" />
     <Compile Include="Extensions\Reactor\Input\HotkeyManager.cs" />
     <Compile Include="Extensions\UnityEngine\UnityEngine\GameObject.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Game\Cheats.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\MessageBox.cs" />
+    <Compile Include="Game\NotificationsBox.cs" />
     <Compile Include="Game\Options.cs" />
     <Compile Include="Game\Profile.cs" />
     <Compile Include="Game\Task.cs" />
@@ -149,6 +152,16 @@
     <Compile Include="Resources\Strings.cs" />
     <Compile Include="Game\Menus.cs" />
     <Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\GetSubmenus.cs" />
+    <Compile Include="Data\Notifications\NotificationBase.cs" />
+    <Compile Include="Data\Notifications\NotificationPrefabData.cs" />
+    <Compile Include="Data\Notifications\NotificationType.cs" />
+    <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\ShowNextOrHide.cs" />
+    <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Update.cs" />
+    <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\IsReadyToShow.cs" />
+    <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Show.cs" />
+    <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Display.cs" />
+    <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Awake.cs" />
+    <Compile Include="Systems\Notifications\Scripts\NotificationPanel.cs" />
     <Compile Include="Systems\SpectrumDelayedInit\Harmony\Assembly-CSharp\GameManager\Awake.cs" />
     <Compile Include="Systems\SpectrumDelayedInit\ReactorProxy.cs" />
   </ItemGroup>
@@ -183,6 +196,7 @@
     <None Include="Centrifuge.Distance.targets" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Target Name="PostBuildMacros">
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
       <Output TaskParameter="Assemblies" ItemName="Targets" />
