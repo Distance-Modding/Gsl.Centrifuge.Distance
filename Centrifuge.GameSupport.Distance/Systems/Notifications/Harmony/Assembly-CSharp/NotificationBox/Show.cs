@@ -4,7 +4,7 @@ using Centrifuge.Distance.Data.Notifications;
 
 namespace Centrifuge.Distance.Notifications.Harmony
 {
-	//[HarmonyPatch(typeof(NotificationBox), "Show")]
+	[HarmonyPatch(typeof(NotificationBox), "Show")]
 	internal static class NotificationBox__Show
 	{
 		[HarmonyPrefix]

@@ -17,7 +17,7 @@ namespace Centrifuge.Distance.Notifications.Scripts
 		#endregion
 		#region Script Fields
 		protected float hideTime = -1f;
-		protected bool ReadMenuNotifications => GameManager.IsInMainMenuScene_;
+		protected static bool ReadMenuNotifications => GameManager.IsInMainMenuScene_;
 		#endregion
 		#endregion
 
@@ -42,19 +42,16 @@ namespace Centrifuge.Distance.Notifications.Scripts
 			notification.Display(prefabData);
 		}
 
-		protected internal bool IsReadyToShow(bool mustRead = false)
+		internal static bool IsReadyToShow(bool mustRead = false)
 		{
-			if (prefabData == null) return false;
+			if (!Instance || !Instance.gameObject.activeSelf) return false;
 			return !mustRead || ReadMenuNotifications;
 		}
 
 		protected internal void ShowNextOrHide()
 		{
-			if (currentNotification != null)
-			{
-				currentNotification?.Reset(prefabData);
-				currentNotification = null;
-			}
+			currentNotification?.Reset(prefabData);
+			currentNotification = null;
 
 			if (ReadMenuNotifications && menuNotifications.Count > 0)
 			{
@@ -110,19 +107,22 @@ namespace Centrifuge.Distance.Notifications.Scripts
 		{
 			if (Instance && Instance.isActiveAndEnabled)
 			{
-				this.Destroy();
+				Destroy(this);
 				return;
 			}
-			Setup(GetComponent<NotificationBox>());
+
+			Setup(gameObject.GetComponent<NotificationBox>());
 			Instance = this;
 		}
 
 		public void Update()
 		{
+			prefabData.Panel.alpha = 1;
+
 			float alpha = Mathf.Clamp01(hideTime - Time.unscaledTime);
 			prefabData.Panel.alpha = alpha;
 
-			if (0.Equals(alpha)) return;
+			if (alpha > 0f) return;
 
 			ShowNextOrHide();
 		}

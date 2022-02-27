@@ -2,7 +2,7 @@
 
 namespace Centrifuge.Distance.Notifications.Harmony
 {
-	//[HarmonyPatch(typeof(NotificationBox), "Update")]
+	[HarmonyPatch(typeof(NotificationBox), "Update")]
 	internal static class NotificationBox__Update
 	{
 		[HarmonyPrefix]
