@@ -3,37 +3,37 @@
 namespace Centrifuge.Distance.Configuration
 {
 	public class Config : Settings
-    {
-        public Config() : base("Centrifuge.Distance")
-        {
-        }
+	{
+		public Config() : base("Centrifuge.Distance")
+		{
+		}
 
-        private T Get<T>(string key, T @default = default)
-        {
-            if (ContainsKey(key))
-            {
-                return GetItem<T>(key);
-            }
-            else
-            {
-                return @default;
-            }
-        }
+		private T Get<T>(string key, T @default = default)
+		{
+			if (ContainsKey(key))
+			{
+				return GetItem<T>(key);
+			}
+			else
+			{
+				return @default;
+			}
+		}
 
-        private void Set<T>(string key, T value, bool autoSave = true)
-        {
-            this[key] = value;
+		private void Set<T>(string key, T value, bool autoSave = true)
+		{
+			this[key] = value;
 
-            if (autoSave)
-            {
-                Save();
-            }
-        }
+			if (autoSave)
+			{
+				Save();
+			}
+		}
 
-        public bool ShowVersionInfo
-        {
-            get => Get("general.showversioninfo", true);
-            set => Set("general.showversioninfo", value);
-        }
-    }
+		public bool ShowVersionInfo
+		{
+			get => Get("general.showversioninfo", true);
+			set => Set("general.showversioninfo", value);
+		}
+	}
 }

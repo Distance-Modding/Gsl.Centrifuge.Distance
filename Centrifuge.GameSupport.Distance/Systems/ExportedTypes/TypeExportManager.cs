@@ -56,7 +56,7 @@ namespace Centrifuge.Distance.Systems.ExportedTypes
             }
         }
 
-        internal static bool PerformTypeCheck(Type baseType, Type type) 
+        internal static bool PerformTypeCheck(Type baseType, Type type)
         {
             Func<Type, bool> validator = (_) => true;
 
@@ -74,7 +74,7 @@ namespace Centrifuge.Distance.Systems.ExportedTypes
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                try 
+                try
                 {
                     foreach (Type type in assembly.GetTypes())
                     {
