@@ -18,13 +18,13 @@ namespace Centrifuge.Distance.Data.Notifications
         : this(notification.title, notification.description, notification.spriteName, notification.type.ToGSLEnum(), notification.time)
         { }
 
-        public new void Prepare(NotificationPrefabData prefab)
+        public override void Prepare(NotificationPrefabData prefab)
         {
             base.Prepare(prefab);
             prefab.Icon.spriteName = Sprite;
         }
 
-        public new void Display(NotificationPrefabData prefab)
+        public override void Display(NotificationPrefabData prefab)
         {
             base.Display(prefab);
             AudioManager.PostEvent(Type.GetAudioEventName());

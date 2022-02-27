@@ -1,5 +1,4 @@
-﻿#pragma warning disable IDE0060, RCS1163
-using Centrifuge.Distance.Notifications.Scripts;
+﻿using Centrifuge.Distance.Notifications.Scripts;
 
 namespace Centrifuge.Distance.Data.Notifications
 {
@@ -16,14 +15,14 @@ namespace Centrifuge.Distance.Data.Notifications
             Duration = duration;
         }
 
-        public void Prepare(NotificationPrefabData prefab)
+        public virtual void Prepare(NotificationPrefabData prefab)
         {
-            prefab.Title.text = $"#{Title.ToUpper()}";
+            prefab.Title.text = Title.ToUpper();
             prefab.Description.text = Description;
         }
 
-        public void Display(NotificationPrefabData prefab) { }
+        public virtual void Display(NotificationPrefabData prefab) { }
 
-        public void Reset(NotificationPrefabData prefab) { }
+        public virtual void Reset(NotificationPrefabData prefab) { }
     }
 }
