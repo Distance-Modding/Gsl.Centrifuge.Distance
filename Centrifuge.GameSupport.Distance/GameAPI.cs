@@ -54,6 +54,17 @@ namespace Centrifuge.Distance
 				Logger.Error("Failed to initialize harmony. Mods will still be loaded, but may not function correctly.");
 				Logger.Exception(e);
 			}
+
+			Events.MainMenu.Initialized.Subscribe((data) =>
+			{
+				NotificationBox.Show(new NotificationBox.Notification("Notification A1", "Description A1", NotificationBox.NotificationType.Campaign, 6), true);
+				NotificationBox.Show(new NotificationBox.Notification("Notification A2", "Description A2", NotificationBox.NotificationType.Achievement, 6));
+				NotificationBox.Show(new NotificationBox.Notification("Notification A2", "Description A2", NotificationBox.NotificationType.Levels, 6));
+
+				//NotificationsBox.Show("Notification B1", "Description B1");
+				//NotificationsBox.Show("Notification B2", "Description B2", Data.Notifications.NotificationType.Campaign);
+				//NotificationsBox.Show("Notification B3", "Description B3", 2);
+			});
 		}
 
 		private void FixedUpdate()
