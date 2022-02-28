@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\MessageButtons.cs" />
+    <Compile Include="Data\Notifications\ExtendedNotification.cs" />
     <Compile Include="Data\Notifications\Notification.cs" />
     <Compile Include="Events\GUI\MenuClosed.cs" />
     <Compile Include="Events\GUI\MenuOpened.cs" />
