@@ -1,18 +1,18 @@
 ﻿#pragma warning disable IDE0051, RCS1213
+using System;
 using Centrifuge.Distance.Configuration;
-using Centrifuge.Distance.Data.Notifications;
 using Centrifuge.Distance.EditorScripts.Attributes;
 using Centrifuge.Distance.EditorTools.Attributes;
 using Centrifuge.Distance.Game;
 using Centrifuge.Distance.GUI.Data;
 using Centrifuge.Distance.GUI.Menu;
+using Centrifuge.Distance.Notifications;
 using Centrifuge.Distance.Systems.ExportedTypes;
 using LevelEditorTools;
 using Reactor.API.Attributes;
 using Reactor.API.Interfaces.Systems;
 using Reactor.API.Logging;
 using Reactor.API.Runtime.Patching;
-using System;
 using UnityEngine;
 
 namespace Centrifuge.Distance

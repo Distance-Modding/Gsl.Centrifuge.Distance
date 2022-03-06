@@ -1,4 +1,4 @@
-﻿using Centrifuge.Distance.Data.Notifications;
+﻿using Centrifuge.Distance.Notifications;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -50,9 +50,6 @@ namespace Centrifuge.Distance.Notifications.Scripts
 
 		protected internal void ShowNextOrHide()
 		{
-			currentNotification?.Reset(prefabData);
-			currentNotification = null;
-
 			if (ReadMenuNotifications && menuNotifications.Count > 0)
 			{
 				HandleNotification(menuNotifications);
@@ -71,10 +68,10 @@ namespace Centrifuge.Distance.Notifications.Scripts
 		{
 			currentNotification = notificationQueue.Dequeue();
 
-			if (currentNotification is Notification notification && notification.Type == NotificationType.Levels)
+			if (currentNotification is VanillaNotification notification && notification.Type == NotificationType.Levels)
 			{
 				List<NotificationBase> levelNotifications = notificationQueue
-					.OfType<Notification>()
+					.OfType<VanillaNotification>()
 					.Where(n => n.Type == NotificationType.Levels)
 					.Cast<NotificationBase>()
 					.ToList();
@@ -123,6 +120,9 @@ namespace Centrifuge.Distance.Notifications.Scripts
 			prefabData.Panel.alpha = alpha;
 
 			if (alpha > 0f) return;
+
+			currentNotification?.Reset(prefabData);
+			currentNotification = null;
 
 			ShowNextOrHide();
 		}

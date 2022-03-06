@@ -96,8 +96,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\MessageButtons.cs" />
-    <Compile Include="Data\Notifications\ExtendedNotification.cs" />
-    <Compile Include="Data\Notifications\Notification.cs" />
+    <Compile Include="Extensions\UnityEngine\UnityEngine\Color.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationBackgroundColor.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationTexture.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationDotColor.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationDescriptionColor.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationTitleColor.cs" />
+    <Compile Include="Systems\Notifications\NotificationBuilder.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationSound.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationSprite.cs" />
+    <Compile Include="Systems\Notifications\SpriteIcon.cs" />
+    <Compile Include="Systems\Notifications\VanillaNotification.cs" />
     <Compile Include="Events\GUI\MenuClosed.cs" />
     <Compile Include="Events\GUI\MenuOpened.cs" />
     <Compile Include="Extensions\Assembly-CSharp\UIRect.cs" />
@@ -153,15 +162,16 @@
     <Compile Include="Resources\Strings.cs" />
     <Compile Include="Game\Menus.cs" />
     <Compile Include="Systems\GUI\Harmony\Assembly-CSharp\OptionsMenuLogic\GetSubmenus.cs" />
-    <Compile Include="Data\Notifications\NotificationBase.cs" />
-    <Compile Include="Data\Notifications\NotificationPrefabData.cs" />
-    <Compile Include="Data\Notifications\NotificationType.cs" />
+    <Compile Include="Systems\Notifications\NotificationBase.cs" />
+    <Compile Include="Systems\Notifications\NotificationPrefabData.cs" />
+    <Compile Include="Systems\Notifications\NotificationType.cs" />
     <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\ShowNextOrHide.cs" />
     <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Update.cs" />
     <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\IsReadyToShow.cs" />
     <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Show.cs" />
     <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Display.cs" />
     <Compile Include="Systems\Notifications\Harmony\Assembly-CSharp\NotificationBox\Awake.cs" />
+    <Compile Include="Systems\Notifications\Modifiers\NotificationModifier.cs" />
     <Compile Include="Systems\Notifications\Scripts\NotificationPanel.cs" />
     <Compile Include="Systems\SpectrumDelayedInit\Harmony\Assembly-CSharp\GameManager\Awake.cs" />
     <Compile Include="Systems\SpectrumDelayedInit\ReactorProxy.cs" />

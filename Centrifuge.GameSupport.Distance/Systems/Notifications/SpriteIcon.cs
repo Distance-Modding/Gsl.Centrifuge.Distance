@@ -1,0 +1,42 @@
+﻿namespace Centrifuge.Distance.Notifications
+{
+	public enum SpriteIcon
+	{
+		AdvancedDriver,
+		Adventurer,
+		BetterThanSlicedBread,
+		BigBother,
+		BlastFromThePast,
+		CheatTheSystem,
+		DownNotOut,
+		ExpertDriver,
+		FlightlessDeparture,
+		FlyForFreedom,
+		FoundYou,
+		GoldCollector,
+		JumpForJoy,
+		Keymaster,
+		MeetYourRival,
+		Millionaire,
+		MovingForward,
+		NinjaInTraining,
+		PerfectDriver,
+		PumpkinKing,
+		Rampage,
+		ReversionGranted,
+		SelfTermination,
+		SixFigures,
+		SpeedRunner,
+		SplitPersonality,
+		StillAlive,
+		TheLongGrind,
+		TheOtherSide,
+		Trackmogrifier,
+		VendorBender,
+		WelcomeToTheFamily,
+		Wordsmith,
+		WorldTraveller,
+		Worthy,
+		Count
+	}
+}

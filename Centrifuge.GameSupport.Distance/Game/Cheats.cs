@@ -17,7 +17,6 @@
             if (IsCheatUnlocked(cheat))
             {
                 Manager.SetEnabled(cheat, state);
-
                 return IsCheatEnabled(cheat) == state;
             }
 

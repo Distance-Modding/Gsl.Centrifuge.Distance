@@ -136,8 +136,6 @@ namespace Centrifuge.Distance.Internal
             }
 
             widget.alpha = target;
-
-            yield break;
         }
 
         internal string ReactorVersion => typeof(Reactor.API.Defaults).Assembly.GetProductVersion();

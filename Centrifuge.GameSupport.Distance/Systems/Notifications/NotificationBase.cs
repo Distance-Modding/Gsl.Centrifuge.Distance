@@ -1,6 +1,6 @@
 ﻿using Centrifuge.Distance.Notifications.Scripts;
 
-namespace Centrifuge.Distance.Data.Notifications
+namespace Centrifuge.Distance.Notifications
 {
     public abstract class NotificationBase
     {

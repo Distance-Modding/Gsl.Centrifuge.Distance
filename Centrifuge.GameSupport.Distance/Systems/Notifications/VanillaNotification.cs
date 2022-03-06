@@ -1,20 +1,18 @@
-﻿using Centrifuge.Distance.Notifications.Scripts;
-
-namespace Centrifuge.Distance.Data.Notifications
+﻿namespace Centrifuge.Distance.Notifications
 {
-	public class Notification : NotificationBase
+	internal class VanillaNotification : NotificationBase
 	{
 		public string Sprite { get; internal set; }
 		public NotificationType Type { get; internal set; }
 
-		public Notification(string title, string description, string sprite, NotificationType type, float duration)
+		public VanillaNotification(string title, string description, string sprite, NotificationType type, float duration)
 		: base(title, description, duration)
 		{
 			Sprite = sprite;
 			Type = type;
 		}
 
-		public Notification(NotificationBox.Notification notification)
+		public VanillaNotification(NotificationBox.Notification notification)
 		: this(notification.title, notification.description, notification.spriteName, notification.type.ToGSLEnum(), notification.time)
 		{ }
 
@@ -34,7 +32,7 @@ namespace Centrifuge.Distance.Data.Notifications
 			}
 		}
 
-		public static implicit operator NotificationBox.Notification(Notification n)
+		public static implicit operator NotificationBox.Notification(VanillaNotification n)
 		{
 			return new NotificationBox.Notification
 			(

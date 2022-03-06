@@ -1,6 +1,5 @@
-﻿using HarmonyLib;
-using Centrifuge.Distance.Notifications.Scripts;
-using Centrifuge.Distance.Data.Notifications;
+﻿using Centrifuge.Distance.Notifications.Scripts;
+using HarmonyLib;
 
 namespace Centrifuge.Distance.Notifications.Harmony
 {
@@ -10,7 +9,7 @@ namespace Centrifuge.Distance.Notifications.Harmony
 		[HarmonyPrefix]
 		internal static bool Prefix(NotificationBox.Notification n, bool menuOnly = true)
 		{
-			NotificationPanel.Instance.Show(new Notification(n), menuOnly);
+			NotificationPanel.Instance.Show(new VanillaNotification(n), menuOnly);
 			return false;
 		}
 	}

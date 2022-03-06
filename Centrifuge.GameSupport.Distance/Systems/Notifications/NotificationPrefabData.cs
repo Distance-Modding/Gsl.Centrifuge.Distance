@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Centrifuge.Distance.Notifications.Scripts
+namespace Centrifuge.Distance.Notifications
 {
     public class NotificationPrefabData
     {

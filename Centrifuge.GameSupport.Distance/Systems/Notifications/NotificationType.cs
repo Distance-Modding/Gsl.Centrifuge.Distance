@@ -1,6 +1,6 @@
 ﻿using BaseEnum = global::NotificationBox.NotificationType;
 
-namespace Centrifuge.Distance.Data.Notifications
+namespace Centrifuge.Distance.Notifications
 {
     public enum NotificationType
     {
@@ -8,7 +8,8 @@ namespace Centrifuge.Distance.Data.Notifications
         Levels = BaseEnum.Levels,
         Cheats = BaseEnum.Cheats,
         Car = BaseEnum.Car,
-        Achievement = BaseEnum.Achievement
+        Achievement = BaseEnum.Achievement,
+        Count
     }
 
     public static class NotificationTypeMethods
