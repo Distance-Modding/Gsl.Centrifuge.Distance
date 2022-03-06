@@ -35,10 +35,10 @@ namespace Centrifuge.Distance.Internal
                 if (alphaVersionAnchorBlueprint)
                 {
                     GameObject centrifugeInfoAnchor = Instantiate(alphaVersionAnchorBlueprint, alphaVersionAnchorBlueprint.transform.parent);
-                    
+
                     centrifugeInfoAnchor.SetActive(true);
                     centrifugeInfoAnchor.name = "Anchor : Centrifuge Info";
-                    
+
                     centrifugeInfoAnchor.ForEachChildObjectDepthFirstRecursive((obj) =>
                     {
                         obj.SetActive(true);
@@ -141,11 +141,11 @@ namespace Centrifuge.Distance.Internal
         }
 
         internal string ReactorVersion => typeof(Reactor.API.Defaults).Assembly.GetProductVersion();
-        
+
         internal string Centrifuge => string.Format(InternalResources.Strings.VersionInfo.CentrifugeVersion, ReactorVersion);
-        
+
         internal string Mods => string.Format(InternalResources.Strings.VersionInfo.CentrifugeMods, GameAPI.Instance.Manager.GetLoadedMods().Count);
-        
+
         internal string Gsls => string.Format(InternalResources.Strings.VersionInfo.CentrifugeGsls, GameAPI.Instance.Manager.GetLoadedGslIds().Count);
     }
 }
